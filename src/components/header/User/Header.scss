@@ -1,0 +1,110 @@
+.user-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+  z-index: 1000;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+
+  &.shifted {
+    margin-left: 250px; // default sidebar width
+    width: calc(100% - 250px);
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--left-gradient-start);
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--left-gradient-end);
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .icon-wrapper {
+      position: relative;
+      cursor: pointer;
+
+      .icon {
+        font-size: 1.5rem;
+        color: #555;
+        transition: color 0.2s;
+      }
+
+      &:hover .icon {
+        color: var(--left-gradient-start);
+      }
+
+      .badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: linear-gradient(135deg, var(--left-gradient-start), var(--left-gradient-end));
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 2px 5px;
+        border-radius: 50%;
+      }
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+
+      .avatar {
+        font-size: 2rem;
+        color: var(--left-gradient-start);
+        transition: transform 0.2s;
+      }
+
+      &:hover .avatar {
+        transform: scale(1.1);
+      }
+
+      .username {
+        display: none;
+      }
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .left h1 { font-size: 1.2rem; }
+    .left .menu-toggle { display: inline-block; }
+    .right .profile .username { display: inline-block; }
+
+    &.shifted { margin-left: 0; width: 100%; }
+  }
+}

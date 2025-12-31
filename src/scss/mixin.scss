@@ -1,0 +1,73 @@
+@mixin break-point($point) {
+  @if $point==desktop {
+    @media screen and (max-width: 1367px) {
+      @content;
+    }
+  }
+
+  @if $point ==largeTab {
+    @media screen and (max-width: 1280px) {
+      @content;
+    }
+  }
+
+  @if $point ==landscapeTab {
+    @media screen and (max-width: 1199px) {
+      @content;
+    }
+  }
+
+  @if $point ==halfscreen {
+    @media screen and (max-width: 1250) {
+      @content;
+    }
+  }
+
+
+  @if $point ==tablet {
+    @media screen and (max-width: 992px) {
+      @content;
+    }
+  }
+
+  @if $point ==miniTab {
+    @media screen and (max-width: 769px) {
+      @content;
+    }
+  }
+
+  @if $point ==mobile {
+    @media screen and (max-width: 575px) {
+      @content;
+    }
+  }
+}
+
+@mixin transition {
+  transition: all 0.3s linear;
+}
+
+@mixin d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin title {
+  color: $title-color;
+  font-weight: 700;
+}
+
+@mixin transformCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin boxShadow {
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 16px;
+  border: 1px solid #e7e7e7;
+}

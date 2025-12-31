@@ -1,0 +1,139 @@
+$navy: #0a111f;
+$gold: #c5a059;
+
+.notfound-page {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(120deg, #eef2ff, #f8faff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Center Content */
+.notfound-content {
+  text-align: center;
+  z-index: 2;
+  padding: 20px;
+}
+
+.notfound-code {
+  font-size: 160px;
+  font-weight: 900;
+  color: $gold;
+  line-height: 1;
+  letter-spacing: -4px;
+
+  @media (max-width: 600px) {
+    font-size: 110px;
+  }
+}
+
+.notfound-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $navy;
+  margin-top: 10px;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
+}
+
+.notfound-text {
+  margin-top: 14px;
+  font-size: 16px;
+  color: #555;
+  max-width: 520px;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+/* Buttons */
+.notfound-actions {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.notfound-btn {
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.35s ease;
+}
+
+.notfound-primary {
+  background: $navy;
+  color: white;
+
+  &:hover {
+    transform: translateY(-3px);
+    background: darken($navy, 6%);
+    color: $gold;
+  }
+}
+
+.notfound-ghost {
+  border: 2px solid $gold;
+  color: $gold;
+
+  &:hover {
+    background: $gold;
+    color: white;
+    transform: translateY(-3px);
+  }
+}
+
+/* Animated background shapes */
+.notfound-bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  animation: notfound-float 14s infinite ease-in-out;
+}
+
+.notfound-shape-1 {
+  width: 380px;
+  height: 380px;
+  background: #c7d2fe;
+  top: -120px;
+  left: -120px;
+}
+
+.notfound-shape-2 {
+  width: 300px;
+  height: 300px;
+  background: #fde68a;
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 3s;
+}
+
+.notfound-shape-3 {
+  width: 220px;
+  height: 220px;
+  background: #a7f3d0;
+  top: 55%;
+  left: 15%;
+  animation-delay: 6s;
+}
+
+@keyframes notfound-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

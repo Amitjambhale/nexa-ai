@@ -1,0 +1,174 @@
+$navy: #0A1128;
+$gold: #c5a059;
+$pure-white: #ffffff;
+
+.gallarypage-wrapper {
+  background: #fdfdfd;
+  min-height: 100vh;
+  padding-bottom: 100px;
+
+  // Pehle wala Header Style
+  .gallarypage-hero {
+    padding: 60px 20px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba($navy, 0.04) 0%, transparent 100%);
+
+    .gallarypage-badge {
+      background: rgba($gold, 0.15);
+      color: $gold;
+      padding: 6px 15px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: $navy;
+      font-weight: 800;
+      span { color: $gold; }
+      @media (max-width: 768px) { font-size: 34px; }
+    }
+
+    p {
+      max-width: 550px;
+      margin: 15px auto;
+      color: #555;
+      font-size: 16px;
+    }
+  }
+
+  // Naya "Reveal" Grid System
+  .gallarypage-grid-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2 columns for premium feel
+    gap: 30px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gallarypage-reveal-card {
+    height: 400px;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+
+    &:hover {
+      .gallarypage-bg-img { transform: scale(1.1); filter: blur(5px); }
+      .gallarypage-hidden-reveal { opacity: 1; transform: translateY(0); }
+      .gallarypage-bottom-info { transform: translateY(-160px); }
+      .gallarypage-top-info { opacity: 0; }
+    }
+
+    .gallarypage-main-frame {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .gallarypage-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .gallarypage-content-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba($navy, 0.9) 0%, transparent 70%);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.4s;
+    }
+
+    .gallarypage-top-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.4s;
+
+      .gallarypage-album-tag {
+        background: rgba($pure-white, 0.2);
+        backdrop-filter: blur(5px);
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .gallarypage-photo-count {
+        color: #fff;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+    }
+
+    .gallarypage-bottom-info {
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      h3 {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      p {
+        color: rgba(255,255,255,0.7);
+        font-size: 13px;
+      }
+    }
+
+    // Expanding Hidden Section
+    .gallarypage-hidden-reveal {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      .gallarypage-reveal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+
+        .gallarypage-reveal-item {
+          aspect-ratio: 1;
+          border-radius: 12px;
+          overflow: hidden;
+          border: 2px solid rgba(255,255,255,0.3);
+          img { width: 100%; height: 100%; object-fit: cover; }
+        }
+
+        .gallarypage-reveal-more {
+          aspect-ratio: 1;
+          background: rgba($gold, 0.9);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-weight: 700;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

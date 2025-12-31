@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import "~bootstrap/scss/bootstrap";
+@import "./scss/typography.scss";
+@import "./scss/style.scss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+
+.section {
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Mobile responsive ke liye bhi */
+@media (max-width: 640px) {
+  .section {
+    padding: 50px 20px;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+}

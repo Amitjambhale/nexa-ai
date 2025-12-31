@@ -1,0 +1,312 @@
+$footer-navy: #0d1627;
+$footer-navy-light: #1a2b4c;
+$footer-gold: #c5a059;
+$footer-white: #ffffff;
+$footer-text-gray: #b0b0b0;
+
+.footer-main {
+  color: $footer-white;
+  padding-top: 80px;
+  position: relative;
+  font-family: "Arial", sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+
+  .footer-container {
+    margin: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    @media (max-width: 992px) {
+      margin: 0 0px;
+      padding: 0 10px;
+    }
+  }
+
+  // Floating Contact Cards
+  .footer-contact-cards {
+    margin-bottom: -60px;
+    position: relative;
+    z-index: 5;
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .footer-card {
+      background: $footer-navy-light;
+      border-bottom: 3px solid $footer-gold;
+      padding: 25px;
+      flex: 1;
+      min-width: 300px; // Ensures they don't get too thin
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-10px);
+        background: $footer-gold;
+        .footer-card-icon {
+          color: $footer-navy;
+          background: $footer-white;
+        }
+        .footer-card-info {
+          h4,
+          p {
+            color: $footer-navy;
+          }
+        }
+      }
+
+      .footer-card-icon {
+        font-size: 24px;
+        color: $footer-gold;
+        background: rgba(255, 255, 255, 0.05);
+        min-width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: 0.5s;
+      }
+
+      .footer-card-info {
+        h4 {
+          margin: 0;
+          font-size: 18px;
+          color: $footer-gold;
+          font-weight: 700;
+          transition: 0.3s;
+        }
+        p {
+          margin: 5px 0 0;
+          font-size: 13px;
+          color: $footer-text-gray;
+          line-height: 1.5;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+
+  // Links Grid
+  .footer-bottom-grid {
+    background: darken($footer-navy, 3%);
+    padding: 140px 0 60px;
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+
+      &.footer-brand {
+        flex: 1.5;
+      }
+
+      h3 {
+        color: $footer-white;
+        margin-bottom: 30px;
+        font-size: 22px;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 12px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 50px;
+          height: 2px;
+          background: $footer-gold;
+        }
+      }
+
+      p {
+        color: $footer-text-gray;
+        line-height: 1.8;
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 14px;
+          text-align: start;
+          a {
+            color: $footer-text-gray;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: 0.4s ease;
+
+            &:hover {
+              color: $footer-gold;
+              transform: translateX(8px);
+            }
+
+            svg {
+              font-size: 11px;
+              color: $footer-gold;
+              margin-top: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    .footer-social-box {
+      display: flex;
+      gap: 15px;
+      margin-top: 40px;
+      a {
+        width: 40px;
+        height: 40px;
+        background: $footer-navy-light;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: $footer-white;
+        font-size: 16px;
+        transition: 0.5s;
+        border: 1px solid transparent;
+
+        &:hover {
+          background: $footer-gold;
+          color: $footer-navy;
+          transform: rotate(360deg) scale(1.1);
+          border-color: $footer-white;
+        }
+      }
+    }
+  }
+
+  // Bottom Copyright
+  .footer-copyright {
+    padding: 25px 0;
+    background: #050a14;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    .footer-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    p {
+      color: #888;
+      font-size: 14px;
+      margin: 0;
+
+      a {
+        color: #afafaf;
+        text-decoration: none;
+
+        &:hover {
+          color: #b48c36;
+        }
+      }
+    }
+
+    .footer-powered {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      span {
+        color: #888;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      img {
+        height: 45px;
+        object-fit: contain;
+        transition: 0.4s ease;
+        filter: brightness(0.9);
+        &:hover {
+          transform: scale(1.05);
+          filter: brightness(1.2);
+        }
+      }
+    }
+  }
+}
+
+// Media Queries for perfect Responsiveness
+@media (max-width: 1024px) {
+  .footer-main {
+    .footer-contact-cards .footer-card {
+      min-width: 45%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-main {
+    padding-top: 40px;
+    background: $footer-navy;
+
+    .footer-contact-cards {
+      margin-bottom: -40px;
+      .footer-card {
+        min-width: 100%;
+      }
+    }
+
+    .footer-bottom-grid {
+      padding: 100px 0 50px;
+
+      .footer-column {
+        min-width: 100%;
+        text-align: center; // Baki sab center hi rahega (h3, p, etc.)
+
+        h3::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        // SIRF ye links left-align honge
+        ul li {
+          text-align: start; // List item left se shuru hoga
+
+          a {
+            justify-content: flex-start !important;
+            display: flex;
+            padding-left: 20%; // Mobile screen ke hisab se thoda margin taaki chipka hua na lage
+          }
+        }
+      }
+    }
+
+    .footer-social-box {
+      justify-content: center;
+    }
+
+    .footer-copyright .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}

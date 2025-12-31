@@ -1,0 +1,1069 @@
+ <div className="upcomming_classrooms spacing">
+            <div className="container">
+              <div className="page_title padding">
+                <h3>Upcoming classroom courses at bhopal Centre </h3>
+              </div>
+
+              <div className="courses_categories">
+                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                  <div className="courseTitle">
+                    <Nav variant="pills" className="">
+                      <Slider {...CoursecardTitle}>
+                        {examTypes &&
+                          examTypes.map((exam) => {
+                            return (
+                              <Nav.Item key={exam.id}>
+                                <Nav.Link eventKey="main">
+                                  {exam.title}
+                                </Nav.Link>
+                              </Nav.Item>
+                            );
+                          })}
+                      </Slider>
+                    </Nav>
+                  </div>
+                  <div className="navtab_content">
+                    <Tab.Content>
+                      <Tab.Pane eventKey="main">
+                        <div className="coursecard_wrap">
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg1} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b> 30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg2} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg3} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg4} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="button_wrap padding center">
+                          <Link to="" className="button">
+                            View all
+                            <span className="icon">
+                              <BsArrowRight />
+                            </span>
+                          </Link>
+                        </div>
+                      </Tab.Pane>
+                      {/* ///////////// Course 2 ///////////// */}
+                      <Tab.Pane eventKey="course2">
+                        <div className="coursecard_wrap">
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg1} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b> 30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg2} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg3} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg4} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="button_wrap padding center">
+                          <Link to="" className="button">
+                            View all
+                            <span className="icon">
+                              <BsArrowRight />
+                            </span>
+                          </Link>
+                        </div>
+                      </Tab.Pane>
+                      {/* ///////////// Course 3 ///////////// */}
+                      <Tab.Pane eventKey="course3">
+                        <div className="coursecard_wrap">
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg1} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b> 30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg2} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg3} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg4} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="button_wrap padding center">
+                          <Link to="" className="button">
+                            View all
+                            <span className="icon">
+                              <BsArrowRight />
+                            </span>
+                          </Link>
+                        </div>
+                      </Tab.Pane>
+                      {/* ///////////// Course 4 ///////////// */}
+                      <Tab.Pane eventKey="course4">
+                        <div className="coursecard_wrap">
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg1} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b> 30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg2} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg3} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg4} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="button_wrap padding center">
+                          <Link to="" className="button">
+                            View all
+                            <span className="icon">
+                              <BsArrowRight />
+                            </span>
+                          </Link>
+                        </div>
+                      </Tab.Pane>
+                      {/* ///////////// Course 5 ///////////// */}
+                      <Tab.Pane eventKey="course5">
+                        <div className="coursecard_wrap">
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg1} alt="course1" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" /> Starting
+                                    from <b> 30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" /> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" /> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg2} alt="course1" loading="lazy"/>
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg3} alt="course1" loading="lazy"/>
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg4} alt="course1" loading="lazy"/>
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="button_wrap padding center">
+                          <Link to="" className="button">
+                            View all
+                            <span className="icon">
+                              <BsArrowRight />
+                            </span>
+                          </Link>
+                        </div>
+                      </Tab.Pane>
+                      {/* ///////////// Course 6 ///////////// */}
+                      <Tab.Pane eventKey="course6">
+                        <div className="coursecard_wrap">
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg1} alt="course1" loading="lazy"/>
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b> 30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg2} alt="course1" loading="lazy"/>
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg3} alt="course1" loading="lazy"/>
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="course_card">
+                            <div className="image_wrap">
+                              <img src={Courseimg4} alt="course1" loading="lazy" />
+                            </div>
+                            <div className="content">
+                              <div className="course_detail">
+                                <h5>General studies Paper 1</h5>
+                                <ul>
+                                  <li>
+                                    <img src={Calendarimg} alt="" loading="lazy"/> Starting
+                                    from <b>30 October 2022</b>
+                                  </li>
+                                  <li>
+                                    <img src={Teacherimg} alt="" loading="lazy"/> Classroom
+                                    Course
+                                  </li>
+                                  <li>
+                                    <img src={UserGroupimg} alt="" loading="lazy"/> 150 Seats
+                                    Available
+                                  </li>
+                                  <li>
+                                    <h6 className="price">
+                                      <BiRupee />
+                                      1,30,000 /-
+                                    </h6>
+                                    <span>Inclusive of taxes</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div className="button_wrap">
+                                <Link to="" className="button">
+                                  Enroll Now
+                                  <span className="icon">
+                                    <BsArrowRight />
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="button_wrap padding center">
+                          <Link to="" className="button">
+                            View all
+                            <span className="icon">
+                              <BsArrowRight />
+                            </span>
+                          </Link>
+                        </div>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </div>
+                </Tab.Container>
+              </div>
+            </div>
+          </div>
