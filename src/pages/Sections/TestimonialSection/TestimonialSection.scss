@@ -71,7 +71,15 @@ $bg-light: #f9fbff;
       color: #5a6b82;
       font-style: italic;
       margin-bottom: 30px;
-      min-height: 100px;
+      min-height: 100px; // Standard property as per your existing code
+
+      // 4 Lines Limit Logic
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      line-clamp: 4; // Standard property for future compatibility
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .v2-footer {
@@ -83,7 +91,7 @@ $bg-light: #f9fbff;
         transition: 0.4s ease;
       }
       .v2-name {
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 800;
         color: $navy;
       }

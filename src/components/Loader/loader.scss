@@ -1,38 +1,83 @@
-.loaderWrapper {
+$primary-blue: #1a2b4c;
+$accent-gold: #c5a059;
+
+.premium-loader-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: calc(100vh - 100px);
+  
+  .loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .liquid-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .liquid-bubble {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      filter: blur(2px);
+      mix-blend-mode: multiply;
+      opacity: 0.6;
+    }
+
+    .bubble-1 {
+      background: rgba($primary-blue, 0.8);
+    }
+
+    .bubble-2 {
+      background: rgba($accent-gold, 0.5);
+      width: 90%;
+      height: 90%;
+    }
+
+    .bubble-3 {
+      background: rgba($primary-blue, 0.3);
+      width: 110%;
+      height: 110%;
+    }
+
+    .loader-icon {
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+      .loader-text {
+        font-weight: 800;
+        font-size: 14px;
+        color: $primary-blue;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .loading-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
 }
 
-.bounce {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-
-  div {
-    width: 20%;
-    background-color: var(--loader-color, #ff5722); // default color
-    animation: bounce 1.2s infinite ease-in-out;
-    border-radius: 4px;
-  }
-
-  div:nth-child(1) {
-    animation-delay: -0.24s;
-  }
-  div:nth-child(2) {
-    animation-delay: -0.12s;
-  }
-  div:nth-child(3) {
-    animation-delay: 0;
-  }
-}
-
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: scaleY(0.4);
-  }
-  40% {
-    transform: scaleY(1);
-  }
-}
+// Global SVG filter for Gooey effect (Optional - adds extra polish)
+// Add this if you want the bubbles to look like liquid sticking together

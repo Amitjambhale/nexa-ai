@@ -4,46 +4,51 @@ $bg-light: #f8fafc;
 $white: #ffffff;
 $slate: #64748b;
 
+.faqpage-full-loader {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-light;
+}
+
 .faqpage-wrapper {
   min-height: 100vh;
   background: $bg-light;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
 
   .faqpage-header {
     text-align: center;
-    padding: 80px 20px 40px;
+    padding: 60px 20px 20px;
     background: white;
-    .faqpage-tag { color: $gold; font-weight: 800; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; }
-    h1 { font-size: 46px; margin: 15px 0 30px; color: $navy; span { color: $gold; } }
-
-    .faq-search-box {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #f1f5f9;
-      padding: 15px 25px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      border: 2px solid transparent;
-      transition: 0.3s;
-      &:focus-within { border-color: $gold; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-      svg { color: $slate; }
-      input { background: none; border: none; outline: none; width: 100%; font-size: 16px; font-family: inherit; }
+    .faqpage-tag {
+      color: $gold;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    h1 {
+      font-size: 40px;
+      margin: 10px 0;
+      color: $navy;
+      font-weight: 800;
+      span { color: $gold; }
     }
   }
 
   .faqpage-container {
-    max-width: 1200px;
-    margin: 40px auto;
+    max-width: 1300px;
+    margin: 30px auto;
     padding: 0 20px;
   }
 
   .faqpage-grid {
     display: grid;
     grid-template-columns: 380px 1fr;
-    gap: 40px;
-    height: 600px; // Fixed Height for desktop
+    gap: 25px;
+    height: 80vh; // Grid Height set to 80vh
 
     @media (max-width: 991px) {
       grid-template-columns: 1fr;
@@ -53,28 +58,60 @@ $slate: #64748b;
 
   .faqpage-sidebar {
     background: white;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
+    height: 100%; // Takes full grid height
 
-    .sidebar-inner {
-      overflow-y: auto; // This handles 20-30 questions
+    .sidebar-search-header {
       padding: 20px;
+      background: #fff;
+      border-bottom: 1px solid #f1f5f9;
+
+      .faq-mini-search {
+        background: #f1f5f9;
+        padding: 12px 15px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid transparent;
+        transition: 0.3s;
+        &:focus-within {
+          border-color: $gold;
+          background: white;
+        }
+        svg { color: $slate; font-size: 14px; }
+        input { background: none; border: none; outline: none; width: 100%; font-size: 14px; }
+      }
+    }
+
+    .sidebar-scroll-area {
+      overflow-y: auto;
+      padding: 15px;
+      flex: 1;
       &::-webkit-scrollbar { width: 5px; }
       &::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     }
 
     .faqpage-tab-btn {
-      background: none; border: none; padding: 18px; border-radius: 12px;
-      display: flex; align-items: center; gap: 12px; cursor: pointer;
-      width: 100%; text-align: left; transition: 0.2s;
-      margin-bottom: 8px;
+      background: none; border: none;
+      padding: 15px; border-radius: 12px;
+      display: flex; align-items: center;
+      gap: 12px; cursor: pointer;
+      width: 100%; text-align: left;
+      transition: 0.2s;
+      margin-bottom: 6px;
 
-      .btn-icon { color: $slate; font-size: 18px; }
-      .btn-text { flex: 1; font-weight: 600; color: $navy; font-size: 14px; line-height: 1.4; }
-      .arrow { opacity: 0; color: $gold; font-size: 12px; transition: 0.2s; }
+      .btn-icon { color: $slate; font-size: 14px; }
+      .btn-text {
+        flex: 1; font-weight: 600;
+        color: #475569; font-size: 13.5px;
+        line-height: 1.4;
+      }
+      .arrow { opacity: 0; color: $gold; font-size: 11px; transition: 0.2s; transform: translateX(-5px); }
 
       &:hover { background: #f8fafc; }
       &.active {
@@ -84,44 +121,62 @@ $slate: #64748b;
         .arrow { opacity: 1; transform: translateX(0); }
       }
     }
-    .no-result { text-align: center; color: $slate; padding: 40px 0; }
   }
 
   .faqpage-content {
-    .faqpage-answer-card {
-      background: white; padding: 50px; border-radius: 30px;
-      border: 1px solid #e2e8f0; height: 100%; overflow-y: auto;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    height: 100%; // Takes full grid height
+    overflow: hidden;
 
+    .faqpage-content-scroll-area {
+      height: 100%;
+      overflow-y: auto;
+      padding: 40px;
+      &::-webkit-scrollbar { width: 5px; }
+      &::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    }
+
+    .faqpage-answer-card {
       .answer-header {
-        display: flex; align-items: center; gap: 20px; margin-bottom: 30px;
-        padding-bottom: 25px; border-bottom: 1px solid #f1f5f9;
-        .header-icon { font-size: 24px; color: $gold; background: rgba($gold, 0.1); width: 50px; height: 50px; border-radius: 12px; display: grid; place-items: center; }
-        h2 { font-size: 26px; color: $navy; margin: 0; }
+        display: flex; align-items: center;
+        gap: 15px; margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f1f5f9;
+
+        .header-icon {
+          font-size: 18px; color: $gold;
+          background: rgba($gold, 0.1);
+          width: 42px; height: 42px;
+          border-radius: 10px;
+          display: grid; place-items: center;
+          flex-shrink: 0;
+        }
+        h2 { font-size: 24px; color: $navy; margin: 0; font-weight: 700; }
       }
 
       .answer-body {
-        p { font-size: 17px; line-height: 1.8; color: #475569; margin: 0; }
-        a { color: $gold; font-weight: 700; word-break: break-all; }
-        .faq-list {
-          margin-top: 25px; padding-left: 20px;
-          li { margin-bottom: 15px; color: #475569; position: relative; list-style: none;
-            &::before { content: "→"; color: $gold; position: absolute; left: -25px; font-weight: bold; }
-          }
-        }
+        p { font-size: 16px; line-height: 1.8; color: #475569; margin: 0; }
       }
 
       .answer-footer {
-        margin-top: 50px; padding: 20px; background: #f8fafc; border-radius: 15px;
+        margin-top: 40px; padding: 20px;
+        background: #f8fafc; border-radius: 12px;
         p { margin: 0; color: $slate; font-size: 14px; 
-          strong { color: $navy; cursor: pointer; &:hover { color: $gold; } }
+          strong { color: $navy; cursor: pointer; margin-left: 5px; &:hover { color: $gold; } }
         }
       }
     }
   }
 }
 
+.no-result { text-align: center; padding: 30px 10px; color: $slate; font-size: 13px; }
+.select-prompt { height: 100%; display: flex; align-items: center; justify-content: center; color: $slate; }
+
 @media (max-width: 991px) {
   .faqpage-grid { height: auto !important; }
   .faqpage-sidebar { max-height: 400px; }
-  .faqpage-answer-card { padding: 30px !important; margin-top: 20px; }
+  .faqpage-content { height: 500px; margin-top: 20px; }
+  .faqpage-content-scroll-area { padding: 25px !important; }
 }

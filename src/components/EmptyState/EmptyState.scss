@@ -1,0 +1,119 @@
+$navy: #0A1128;
+$gold: #c5a059;
+$slate: #64748b;
+
+.empty-minimal-container {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: transparent; // No Card Background
+
+  .empty-content-flow {
+    text-align: center;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .empty-visual-anchor {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .empty-icon-main {
+        font-size: 45px;
+        color: rgba($navy, 0.2);
+        z-index: 5;
+      }
+
+      // Atmospheric Rings (No Card, just floaty rings)
+      .empty-ring-outer, .empty-ring-inner {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba($gold, 0.2);
+        z-index: 1;
+      }
+
+      .empty-ring-outer {
+        inset: 0;
+        animation: empty-spin-slow 10s linear infinite;
+        border-style: dashed;
+      }
+
+      .empty-ring-inner {
+        inset: 15px;
+        animation: empty-spin-slow 6s linear reverse infinite;
+        opacity: 0.5;
+      }
+    }
+
+    .empty-text-stack {
+      .empty-head {
+        font-size: 32px;
+        font-weight: 800;
+        color: $navy;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+      }
+
+      .empty-sub {
+        font-size: 16px;
+        color: $slate;
+        line-height: 1.6;
+        margin-bottom: 40px;
+      }
+    }
+
+    .empty-action-link {
+      background: transparent;
+      border: 1px solid rgba($navy, 0.1);
+      padding: 12px 30px;
+      border-radius: 100px;
+      display: flex;
+      flex-direction: row-reverse; // Icon at the start logic
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+
+      .empty-btn-text {
+        color: $navy;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        z-index: 2;
+      }
+
+      .empty-btn-icon {
+        color: $gold;
+        font-size: 12px;
+        z-index: 2;
+      }
+
+      &:hover {
+        border-color: $gold;
+        transform: translateY(-2px);
+        background: $navy;
+        
+        .empty-btn-text { color: white; }
+        .empty-btn-icon { color: $gold; }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes empty-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

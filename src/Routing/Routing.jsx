@@ -11,15 +11,14 @@ import FAQPage from "pages/Pages/FAQPage/FAQPage";
 import ContactUsPage from "pages/Pages/ContactUsPage/ContactUsPage";
 import TestimonialsPage from "pages/Pages/TestimonialsPage/TestimonialsPage.jsx";
 import GallaryPage from "pages/Pages/GallaryPage/GallaryPage";
+import BlogPage from "pages/Pages/BlogPage/blog";
+import BlogDetail from "pages/Pages/BlogPage/BlogDetail";
 
 // Pages
-
-
 
 const Routing = () => {
   return (
     <Routes>
-
       {/* PAGES WITH HEADER + FOOTER */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
@@ -28,14 +27,14 @@ const Routing = () => {
         <Route path="/contact-us" element={<ContactUsPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/gallery" element={<GallaryPage />} />
+        <Route path="/blogs" element={<BlogPage/>} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
       </Route>
 
       {/* PAGES WITHOUT ANY LAYOUT */}
       <Route element={<NoLayout />}>
         <Route path="*" element={<NotFound />} />
       </Route>
-
-
     </Routes>
   );
 };

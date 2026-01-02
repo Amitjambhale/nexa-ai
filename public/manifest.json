@@ -1,11 +1,11 @@
 {
   "short_name": "AssurrePlus",
-   "name": "Assurre Plus: A leading insurance and financial consultancy in India, specializing in life insurance, wealth protection, and secure investment solutions. We provide expert risk management and personalized insurance planning to safeguard your family's future with sincerity and trust.",
+  "name": "Assurre Plus: A leading insurance and financial consultancy in India, specializing in life insurance, wealth protection, and secure investment solutions. We provide expert risk management and personalized insurance planning to safeguard your family's future with sincerity and trust.",
   "icons": [
     {
-      "src": "/assets/icons/hollyMinds2.png",
+      "src": "/assureplus-logo.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
+      "type": "image/jpeg"
     }
   ],
   "start_url": ".",

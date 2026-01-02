@@ -10,14 +10,15 @@ $hero-light-bg: #f8faff;
   position: relative;
   overflow: hidden;
   padding: 40px 0;
-      @media (max-width: 991px) {
-      padding: 40px 0px 0px 0px ;
-    }
+
+  @media (max-width: 991px) {
+    padding: 40px 0px 0px 0px;
+  }
 
   .hero-swiper {
     width: 100%;
     height: 100%;
-    padding-bottom: 50px; // space for pagination
+    padding-bottom: 50px;
   }
 
   .hero-slide-item {
@@ -49,9 +50,14 @@ $hero-light-bg: #f8faff;
   /* IMAGE SIDE */
   .hero-image-side {
     .image-holder {
+      height: 450px;
+      @media (max-width: 1300px) {
+        height: 350px;
+      }
       img {
         width: 100%;
-        object-fit: contain;
+        height: 100%;
+        object-fit: fill;
         border-radius: 30px 0 30px 0;
         box-shadow: 0 30px 60px rgba($hero-navy, 0.12);
       }
@@ -70,10 +76,15 @@ $hero-light-bg: #f8faff;
       margin-bottom: 20px;
       padding-left: 15px;
       border-left: 3px solid $hero-gold;
+
+      @media (max-width: 991px) {
+        border-left: none;
+        padding-left: 0;
+      }
     }
 
     h1 {
-      font-size: 46px;
+      font-size: 38px;
       color: $hero-navy;
       font-weight: 800;
       line-height: 1.15;
@@ -84,15 +95,25 @@ $hero-light-bg: #f8faff;
       }
     }
 
-    p {
-      font-size: 18px;
+    .banner-desc {
+      font-size: 16px;
       line-height: 1.7;
       color: #555;
       margin-bottom: 40px;
       max-width: 520px;
 
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3; // 3 lines ke baad ... dikhayega
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
       @media (max-width: 991px) {
         max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
@@ -117,8 +138,9 @@ $hero-light-bg: #f8faff;
       cursor: pointer;
       border: none;
       transition: 0.3s;
-        @media (max-width: 991px) {
-       font-size: 12PX;
+
+      @media (max-width: 991px) {
+        font-size: 12px;
         padding: 4px 4px 4px 15px;
       }
 
@@ -161,7 +183,7 @@ $hero-light-bg: #f8faff;
     }
   }
 
-  /* PAGINATION BELOW IMAGE */
+  /* PAGINATION */
   .swiper-pagination {
     position: relative !important;
     margin-top: 35px;

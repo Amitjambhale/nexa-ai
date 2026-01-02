@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 import Topbar from "./Topbar";
 import HeaderLogo from "../../../assets/icons/assureplus-logo-1.png";
+import { getParentDropdown } from "services/home/PagesApis/pages";
 import "./Header.scss";
 
 const Header = () => {
@@ -14,20 +15,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isInsuranceOpen, setIsInsuranceOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [insurancePlans, setInsurancePlans] = useState([]);
   const location = useLocation();
   const hoverTimeoutRef = useRef(null);
-
-  const insurancePlans = [
-    { name: "Endowment Plans", path: "/services/endowment" },
-    { name: "Children Plans", path: "/services/children" },
-    { name: "Pension Plans", path: "/services/pension" },
-    { name: "Money Back Plans", path: "/services/money-back" },
-    { name: "Health Plans", path: "/services/health" },
-    { name: "Whole Life Plans", path: "/services/whole-life" },
-    { name: "ULIP Plans", path: "/services/ulip" },
-    { name: "Term Plans", path: "/services/term" },
-    { name: "Micro Insurance", path: "/services/micro" },
-  ];
 
   const navLinks = [
     { name: "Home", path: "/", icon: <FaHome /> },
@@ -39,6 +29,21 @@ const Header = () => {
     { name: "FAQ", path: "/faq", icon: <FaQuestionCircle /> },
     { name: "Contact Us", path: "/contact-us", icon: <FaPhoneAlt /> },
   ];
+
+  // Fetch Insurance Plans from API
+  useEffect(() => {
+    const fetchInsurancePlans = async () => {
+      try {
+        const res = await getParentDropdown();
+        if (res.code === 200 && res.data && res.data.products) {
+          setInsurancePlans(res.data.products);
+        }
+      } catch (err) {
+        console.error("Failed to fetch insurance plans:", err);
+      }
+    };
+    fetchInsurancePlans();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 10);
@@ -58,7 +63,7 @@ const Header = () => {
   const handleMouseLeave = () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setIsHovered(false);
-    }, 200);
+    }, 0);
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -67,11 +72,15 @@ const Header = () => {
     setIsInsuranceOpen(false);
   };
 
+  // Helper to format path (Slugify)
+  const getProductPath = (title) => {
+    return `/services/${title.toLowerCase().replace(/\s+/g, "-")}`;
+  };
+
   return (
     <>
       <div className={`nav-overlay ${isMenuOpen ? "active" : ""}`} onClick={closeMenu} />
 
-      {/* 🔹 Topbar Logic: Hides on Desktop Scroll AND always hidden on Mobile/Tablet via CSS */}
       <div className={`topbar-wrapper ${isSticky ? "topbar-hidden" : ""}`}>
         <Topbar />
       </div>
@@ -89,26 +98,34 @@ const Header = () => {
               <li><Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>Home</Link></li>
               <li><Link to="/about-us" className={`nav-item ${location.pathname === "/about-us" ? "active" : ""}`}>About Us</Link></li>
 
-              <li 
-                className={`nav-item dropdown-parent ${isHovered ? "is-open" : ""}`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <span className="nav-link-text">
-                  Life Insurance <FaChevronDown className="chev-icon" />
-                </span>
-                
-                <div className="mega-dropdown">
-                  <div className="dropdown-grid">
-                    {insurancePlans.map((plan) => (
-                      <Link key={plan.name} to={plan.path} className="dropdown-link" onClick={() => setIsHovered(false)}>
-                        <FaShieldAlt className="shield-icon" />
-                        {plan.name}
-                      </Link>
-                    ))}
+              {/* 🔹 Conditionally Render Life Insurance Dropdown */}
+              {insurancePlans.length > 0 && (
+                <li 
+                  className={`nav-item dropdown-parent ${isHovered ? "is-open" : ""}`}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <span className="nav-link-text">
+                    Life Insurance <FaChevronDown className="chev-icon" />
+                  </span>
+                  
+                  <div className="mega-dropdown">
+                    <div className="dropdown-grid">
+                      {insurancePlans.map((plan) => (
+                        <Link 
+                          key={plan.ProductID} 
+                          to={getProductPath(plan.ProductTitle)} 
+                          className="dropdown-link" 
+                          onClick={() => setIsHovered(false)}
+                        >
+                          <FaShieldAlt className="shield-icon" />
+                          {plan.ProductTitle}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+              )}
 
               {navLinks.slice(2).map((link) => (
                 <li key={link.path}>
@@ -143,21 +160,24 @@ const Header = () => {
                   </Link>
                 </li>
 
-                <li className={`mobile-accordion ${isMenuOpen ? "fade-in" : ""}`}>
-                  <button className="accordion-btn" onClick={() => setIsInsuranceOpen(!isInsuranceOpen)}>
-                    <div className="btn-label">
-                      <span className="side-icon"><FaFileInvoiceDollar /></span> Life Insurance
+                {/* 🔹 Conditionally Render Mobile Accordion */}
+                {insurancePlans.length > 0 && (
+                  <li className={`mobile-accordion ${isMenuOpen ? "fade-in" : ""}`}>
+                    <button className="accordion-btn" onClick={() => setIsInsuranceOpen(!isInsuranceOpen)}>
+                      <div className="btn-label">
+                        <span className="side-icon"><FaFileInvoiceDollar /></span> Life Insurance
+                      </div>
+                      {isInsuranceOpen ? <FaChevronUp /> : <FaChevronDown />}
+                    </button>
+                    <div className={`accordion-content ${isInsuranceOpen ? "active" : ""}`}>
+                      {insurancePlans.map((plan) => (
+                        <Link key={plan.ProductID} to={getProductPath(plan.ProductTitle)} onClick={closeMenu}>
+                          <FaShieldAlt className="shield-icon" /> {plan.ProductTitle}
+                        </Link>
+                      ))}
                     </div>
-                    {isInsuranceOpen ? <FaChevronUp /> : <FaChevronDown />}
-                  </button>
-                  <div className={`accordion-content ${isInsuranceOpen ? "active" : ""}`}>
-                    {insurancePlans.map((plan) => (
-                      <Link key={plan.name} to={plan.path} onClick={closeMenu}>
-                        <FaShieldAlt className="shield-icon" /> {plan.name}
-                      </Link>
-                    ))}
-                  </div>
-                </li>
+                  </li>
+                )}
 
                 {navLinks.slice(2).map((link, index) => (
                   <li key={link.path} className={isMenuOpen ? "fade-in" : ""} style={{ transitionDelay: `${(index + 3) * 0.05}s` }}>

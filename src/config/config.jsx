@@ -5,17 +5,17 @@ import toast from "react-hot-toast";
 //   padding: CryptoJS.pad.Pkcs7,
 // };
 
-export const encryptData = (value) => {
-  
-  const data = CryptoJS.AES.encrypt(
-    JSON.stringify(value),
-    process.env.REACT_APP_CRYPTO_SECRET_KEY
-  ).toString();
-  
-  return data;
-};
+// export const encryptData = (value) => {
 
-const secretKey =  process.env.REACT_APP_CRYPTO_SECRET_KEY; // .env se key le
+//   const data = CryptoJS.AES.encrypt(
+//     JSON.stringify(value),
+//     process.env.REACT_APP_CRYPTO_SECRET_KEY
+//   ).toString();
+
+//   return data;
+// };
+
+const secretKey = process.env.REACT_APP_CRYPTO_SECRET_KEY; // .env se key le
 const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); // 16-char IV (fix ya random)
 
 // Encrypt function
@@ -43,13 +43,33 @@ export const encryptPassword = (value) => {
 //         process.env.REACT_APP_CRYPTO_SECRET_KEY
 //       );
 //       const finalValue = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      
+
 //       return finalValue;
 //     } else {
 //       return response;
 //     }
 //   }
 // };
+
+export const encryptReqData = (data) => {
+  try {
+    const key = process.env.REACT_APP_CRYPTO_SECRET_KEY;
+
+    // Direct data ko stringify karke encrypt karein
+    const encrypted = CryptoJS.AES.encrypt(
+      JSON.stringify(data),
+      key
+    ).toString();
+
+    // Direct encrypted string bhejें, extra { reqData: { ... } } ke bina
+    return {
+      reqData: encrypted,
+    };
+  } catch (err) {
+    console.error("Encryption error:", err);
+    return { reqData: data };
+  }
+};
 
 export const decryptData = (response) => {
   if (response.name === "AxiosError") {
@@ -66,7 +86,6 @@ export const decryptData = (response) => {
     const decrypted = bytes.toString(CryptoJS.enc.Utf8);
 
     if (!decrypted) {
-      // decryption failed, maybe it's plain JSON
       return data;
     }
 
@@ -76,7 +95,6 @@ export const decryptData = (response) => {
     return response.data || response;
   }
 };
-
 
 export const normalEncryptData = (value, type) => {
   const data = CryptoJS.AES.encrypt(
@@ -88,7 +106,7 @@ export const normalEncryptData = (value, type) => {
 };
 
 export const normalDecryptDataOld = (data, type) => {
-  if (data) {    
+  if (data) {
     const bytes = CryptoJS.AES.decrypt(
       type === "route" ? data.split("~").join("/") : data,
       process.env.REACT_APP_CRYPTO_SECRET_KEY
@@ -103,12 +121,12 @@ export const normalDecryptDataOld = (data, type) => {
 export const normalDecryptData = (data, type) => {
   if (data) {
     try {
-      console.log('Received data for decryption:', data);
+      console.log("Received data for decryption:", data);
 
-      const key = process.env.REACT_APP_CRYPTO_SECRET_KEY;    
+      const key = process.env.REACT_APP_CRYPTO_SECRET_KEY;
 
       const bytes = CryptoJS.AES.decrypt(
-        type === 'route' ? data.split('~').join('/') : data,
+        type === "route" ? data.split("~").join("/") : data,
         key
       );
 
@@ -141,7 +159,7 @@ export function disableReactDevTools() {
 
       window.__REACT_DEVTOOLS_GLOBAL_HOOK__[prop] =
         typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__[prop] === "function"
-          ? () => { }
+          ? () => {}
           : null;
     }
   }
@@ -149,19 +167,19 @@ export function disableReactDevTools() {
 
 // __________________________  Helper Responses  _______________________________//
 export const failResponse = (res) => {
-  if(res.message != "Network Error"){
-  toast.error(res.message, { id: "fail" });
+  if (res.message != "Network Error") {
+    toast.error(res.message, { id: "fail" });
   }
 };
 
 export const errorResponse = (err) => {
-  if(err?.response?.data?.message || err.message != "Network Error"){
-  toast.error(err?.response?.data?.message || err.message);
+  if (err?.response?.data?.message || err.message != "Network Error") {
+    toast.error(err?.response?.data?.message || err.message);
   }
 };
 
 export const customMessage = (message) => {
-  if(message != "Network Error"){
-  toast.error(message);
+  if (message != "Network Error") {
+    toast.error(message);
   }
 };

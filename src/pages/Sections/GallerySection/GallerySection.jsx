@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Image as ImageIcon, LayoutGrid } from "lucide-react";
-import "./GallerySection.scss";
 import { useNavigate } from "react-router-dom";
-
-const galleryData = [
-  { id: 1, title: "GLOBAL TROPHIES", images: ["https://webxpress.instrasoftsolutions.in/assets/gallery/9089/9089.jpeg", "https://assurreplus.com/assets/gallery/9071/9071.jpeg", "https://webxpress.instrasoftsolutions.in/assets/gallery/9075/9075.jpeg"] },
-  { id: 2, title: "MOMENTS OF HONOR", images: ["https://webxpress.instrasoftsolutions.in/assets/gallery/9108/9108.jpeg", "https://assurreplus.com/assets/gallery/9109/9109.jpeg", "https://assurreplus.com/assets/gallery/9123/9123.jpeg"] },
-  { id: 3, title: "OUR CERTIFICATES", images: ["https://webxpress.instrasoftsolutions.in/assets/gallery/9829/9829.jpeg", "https://assurreplus.com/assets/gallery/10018/10018.jpeg", "https://assurreplus.com/assets/gallery/10663/10663.jpeg"] },
-  { id: 4, title: "MOMENT WITH SPECIAL PERSON", images: ["https://assurreplus.com/assets/gallery/18924/18924.jpeg", "https://assurreplus.com/assets/gallery/18929/18929.jpeg", "https://assurreplus.com/assets/gallery/18925/18925.jpeg"] },
-];
+import { getGallary } from "services/home/SectionsApis/sectionsapi";
+import "./GallerySection.scss";
 
 const TileCard = ({ item }) => {
   const [currentImg, setCurrentImg] = useState(0);
 
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImg((prev) => (prev + 1) % item.images.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [item.images.length]);
+    if (item.images && item.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImg((prev) => (prev + 1) % item.images.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [item.images]);
+
+  // API response mein image URL 'url' field mein hai
+  const displayImage = item.images && item.images.length > 0 
+    ? item.images[currentImg]?.url 
+    : "";
 
   return (
     <motion.div 
@@ -34,7 +34,7 @@ const TileCard = ({ item }) => {
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImg}
-            src={item.images[currentImg]}
+            src={displayImage}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -57,7 +57,31 @@ const TileCard = ({ item }) => {
 };
 
 const GallerySection = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [galleries, setGalleries] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await getGallary({ limit: 4, page: 1 });
+        if (res.code === 200 && res.data && res.data.galleries) {
+          setGalleries(res.data.galleries);
+        }
+      } catch (err) {
+        console.error("Gallery Fetch Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchGallery();
+  }, []);
+
+  // Agar data nahi hai toh section hide kar do
+  if (!loading && galleries.length === 0) {
+    return null;
+  }
+
   return (
     <section className="clean-gallery-v3">
       <div className="container">
@@ -72,11 +96,12 @@ const GallerySection = () => {
         </header>
 
         <div className="tiles-grid">
-          {galleryData.map((item) => (
+          {galleries.map((item) => (
             <TileCard key={item.id} item={item} />
           ))}
         </div>
-            <motion.div
+
+        <motion.div
           className="gallery-footer"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

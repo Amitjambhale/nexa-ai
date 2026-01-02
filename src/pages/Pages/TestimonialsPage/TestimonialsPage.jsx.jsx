@@ -1,98 +1,124 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaShieldAlt, FaQuoteLeft } from "react-icons/fa";
+import { getTestimonials } from "services/home/SectionsApis/sectionsapi";
+import PremiumLoader from "components/Loader/Loader";
+import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
+import EmptyState from "components/EmptyState/EmptyState.jsx";
 import "./TestimonialsPage.scss";
 
 const TestimonialsPage = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Mr. Sanjeev Garse, GM (Operation) Push Engg. Pvt.Ltd. Pune.",
-      desc: "I really appreciate your time to time detailed guidance for me. LIC policy is going to be useful for me and is going to support me financially in the future. I also appreciate your dedicated efforts towards providing me the LIC updates. Thank you for your guidance, which we really needed.",
-      img: "https://assurreplus.com/assets/testimonials/940/940.jpeg",
-    },
-    {
-      id: 2,
-      name: "Dr. Sachin Dusane",
-      desc: "As I am a doctor so many insurance advisors came across my journey, but Mr Dillep Paatil and Mrs Purnima Patil only can explain about the importance and different plans of policies . I like your bucket concept. How to fill different buckets of saving and insurance . You are a fusion of friendly person and professional advisor. What a meaningful full name, \"ASSURRE PLUS\" is...! You proved it with your work. Thanks to be a guide for us in insurance and investments !",
-      img: "https://assurreplus.com/assets/testimonials/941/941.jpeg",
-    },
-    {
-      id: 3,
-      name: "Mr. Harshil Shavdia, CA",
-      desc: "Assurre Plus is one stop destination for meeting all  insurance needs. Dilipji ensures hassle free process to meet individual's insurance requirements. Seeing services, have referred my friends to consult Dilipji for all their insurance planning ",
-      img: "https://assurreplus.com/assets/testimonials/942/942.jpeg",
-    },
-  ];
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadMoreLoading, setLoadMoreLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+
+  useEffect(() => {
+    fetchData(1, false);
+  }, []);
+
+  const fetchData = async (pageNum, isLoadMore = false) => {
+    try {
+      if (isLoadMore) setLoadMoreLoading(true);
+      else setLoading(true);
+
+      const res = await getTestimonials({ page: pageNum, limit: 10 });
+      
+      if (res && res.code === 200 && res.data) {
+        const newItems = res.data.testimonials || [];
+        
+        if (isLoadMore) {
+          setTestimonials((prev) => [...prev, ...newItems]);
+        } else {
+          setTestimonials(newItems);
+        }
+        
+        setTotalCount(Number(res.data.total) || 0);
+      }
+    } catch (err) {
+      console.error("Testimonials API Error:", err);
+    } finally {
+      setLoading(false);
+      setLoadMoreLoading(false);
+    }
+  };
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage); 
+    fetchData(nextPage, true);
+  };
+
+  // 1. INITIAL FULL PAGE LOADER
+  if (loading && page === 1) {
+    return (
+      <div className="full-page-loader">
+        <PremiumLoader />
+      </div>
+    );
+  }
+
+  // 2. MINIMAL EMPTY STATE (Replaced Card Style)
+  if (testimonials.length === 0) {
+    return (
+      <EmptyState 
+        title="No Testimonials Found" 
+        message="We are currently gathering feedback from our clients. Please check back soon to see their stories."
+        buttonText="Return to Home"
+      />
+    );
+  }
 
   return (
     <div className="premium-testimonial-flow">
       <div className="container">
         <header className="testimonial-header-v2">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="premium-label">Voices of Assurre Plus</span>
-            <h2>
-              Real Stories <span>Real Trust.</span>
-            </h2>
-          </motion.div>
+          <h2>Real Stories <span>Real Trust.</span></h2>
         </header>
 
         <div className="journey-wrapper">
           <div className="dynamic-line"></div>
-
           {testimonials.map((item, index) => (
-            <div
-              key={item.id}
-              className={`journey-step ${
-                index % 2 === 0 ? "left-aligned" : "right-aligned"
-              }`}
+            <motion.div 
+              key={item.ID || index} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={`journey-step ${index % 2 === 0 ? "left-aligned" : "right-aligned"}`}
             >
-              {/* CONTENT AREA */}
-              <motion.div
-                className="content-side"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
+              <div className="content-side">
                 <div className="testimonial-box">
                   <FaQuoteLeft className="mobile-quote-icon" />
-                  <p className="quote-text">{item.desc}</p>
+                  <p className="quote-text">{item.Description}</p>
                   <div className="client-footer">
-                    <span className="name">{item.name}</span>
-                    <span className="rank">{item.rank}</span>
+                    <span className="name">{item.Name}</span>
                   </div>
                 </div>
-              </motion.div>
-
-              {/* CENTER ICON */}
+              </div>
               <div className="center-anchor">
                 <div className="shield-hex">
                   <FaShieldAlt className="s-icon" />
                   <div className="step-count">{index + 1}</div>
                 </div>
               </div>
-
-              {/* IMAGE AREA */}
-              <motion.div
-                className="image-side"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
+              <div className="image-side">
                 <div className="portrait-frame">
-                  <img src={item.img} alt={item.name} />
+                  <img src={item.imageUrl} alt={item.Name} />
                   <div className="floating-ornament"></div>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           ))}
         </div>
+
+        {/* REUSABLE LOAD MORE BUTTON */}
+        <LoadMoreButton 
+          onLoadMore={handleLoadMore}
+          loading={loadMoreLoading}
+          hasNextPage={testimonials.length < totalCount}
+          label="Load More"
+        />
       </div>
     </div>
   );

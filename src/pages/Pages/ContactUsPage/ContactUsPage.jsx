@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -8,42 +8,127 @@ import {
   FaClock,
   FaShieldAlt,
   FaUserTie,
-  FaGoogleDrive
+  FaCheckCircle,
+  FaTimesCircle
 } from "react-icons/fa";
+import { addContactUs } from "services/home/PagesApis/pages";
 import "./ContactUsPage.scss";
 
 const ContactUsPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    emailid: "",
+    mobile: "",
+    comment: ""
+  });
+
+  const [status, setStatus] = useState("idle");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await addContactUs(formData);
+      if (res.code === 200) {
+        setStatus("success");
+        setFormData({ name: "", emailid: "", mobile: "", comment: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch (err) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
+  };
+
   return (
     <div className="contactpage-premium-layout">
       <div className="contactpage-container">
-        {/* HEADER SECTION */}
+        
+        <AnimatePresence>
+          {status !== "idle" && status !== "loading" && (
+            <motion.div 
+              className={`status-overlay ${status}`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.1 }}
+            >
+              <div className="overlay-content">
+                {status === "success" ? (
+                  <>
+                    <FaCheckCircle className="status-icon" />
+                    <h2>Message Received!</h2>
+                    <p>Thank you for reaching out. Our experts will contact you shortly.</p>
+                  </>
+                ) : (
+                  <>
+                    <FaTimesCircle className="status-icon" />
+                    <h2>Something Went Wrong</h2>
+                    <p>We couldn't process your request right now. Please try again later.</p>
+                  </>
+                )}
+                <button onClick={() => setStatus("idle")}>Close</button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <header className="contactpage-header">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="premium-tag">Assurre Plus</span>
             <h1>Connect with our <span>Experts.</span></h1>
             <p>Your security journey starts with a conversation.</p>
           </motion.div>
         </header>
 
-        {/* TOP INTERACTION: FORM & INFO SIDE-BY-SIDE */}
         <div className="contactpage-upper-grid">
           <div className="contactpage-form-section">
             <h3 className="sub-heading">Send an Inquiry</h3>
-            <form className="modern-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="modern-form" onSubmit={handleSubmit}>
               <div className="input-row">
-                <input type="text" placeholder="Your Name" required />
-                <input type="tel" placeholder="Phone Number" required />
+                <input 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your Name" 
+                  required 
+                />
+                <input 
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  placeholder="Phone Number" 
+                  required 
+                />
               </div>
-              <input type="email" placeholder="Email Address" required />
+              
+              <input 
+                name="emailid"
+                type="email"
+                value={formData.emailid}
+                onChange={handleChange}
+                placeholder="Email Address" 
+                required 
+              />
+
               <textarea
-                rows="8"
+                name="comment"
+                value={formData.comment}
+                onChange={handleChange}
+                rows="6"
                 placeholder="How can we assist you with your insurance needs?"
+                required
               ></textarea>
-              <button className="submit-action-btn">
-                SEND MESSAGE <FaArrowRight />
+
+              <button className="submit-action-btn" disabled={status === "loading"}>
+                {status === "loading" ? "SENDING..." : "SEND MESSAGE"} <FaArrowRight />
               </button>
             </form>
           </div>
@@ -84,28 +169,25 @@ const ContactUsPage = () => {
           </div>
         </div>
 
-        {/* MAP SECTION - Restructured with Title on Top */}
         <section className="map-grand-section">
           <div className="map-title-area">
              <h2>Find Us on <span>Google Maps</span></h2>
              <div className="title-line"></div>
           </div>
-          
           <div className="contactus-map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1891.7078807292678!2d73.78797411072102!3d18.51010482962491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1e1f4cda279%3A0x2776a45ea65b97af!2sAssurrePlus!5e0!3m2!1sen!2sin!4v1767087044756!5m2!1sen!2sin"
-            width="100%"
-            height="450"
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15135.244362174668!2d73.8055627!3d18.5035541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfbc902506e3%3A0xc3389b2f6762f03!2sAssurre%20Plus%20Insurance%20Broking%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%"
+              height="450"
               className="contactus-map"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
           </div>
         </section>
       </div>
     </div>
   );
-}
+};
 
 export default ContactUsPage;
