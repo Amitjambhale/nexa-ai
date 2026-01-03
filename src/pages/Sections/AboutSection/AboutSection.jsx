@@ -6,6 +6,13 @@ import "./AboutSection.scss";
 import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
+
+  const phoneNumber = "919881952606";
+  const message = "Hello Assurre Plus, I'm interested in your insurance services.";
+
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
   const navigate = useNavigate();
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -88,7 +95,7 @@ const AboutSection = () => {
                   <a href="https://twitter.com/share?url=https%3A%2F%2Fassurreplus.com%2Fabout" target="_blank" className="s-link"><FaTwitter /></a>
                   <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fassurreplus.com%2Fabout"target="_blank" className="s-link"><FaFacebookF /></a>
                   <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fassurreplus.com%2Fabout" target="_blank" className="s-link"><FaLinkedinIn /></a>
-                  <a href="whatsapp://send?text=https%3A%2F%2Fassurreplus.com%2Fabout" target="_blank" className="s-link"><FaWhatsapp /></a>
+                  <a  onClick={openWhatsApp}  className="s-link"><FaWhatsapp /></a>
                 </div>
               </div>
             </div>

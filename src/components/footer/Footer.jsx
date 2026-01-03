@@ -202,7 +202,7 @@ const year = new Date().getFullYear();
                 </Link>
               </li>
               <li>
-                <Link to="#">
+                <Link to="/blogs">
                   <FaChevronRight /> Blog
                 </Link>
               </li>

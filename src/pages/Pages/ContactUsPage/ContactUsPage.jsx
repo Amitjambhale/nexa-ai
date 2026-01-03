@@ -9,7 +9,7 @@ import {
   FaShieldAlt,
   FaUserTie,
   FaCheckCircle,
-  FaTimesCircle
+  FaTimesCircle,
 } from "react-icons/fa";
 import { addContactUs } from "services/home/PagesApis/pages";
 import "./ContactUsPage.scss";
@@ -19,7 +19,7 @@ const ContactUsPage = () => {
     name: "",
     emailid: "",
     mobile: "",
-    comment: ""
+    comment: "",
   });
 
   const [status, setStatus] = useState("idle");
@@ -51,10 +51,9 @@ const ContactUsPage = () => {
   return (
     <div className="contactpage-premium-layout">
       <div className="contactpage-container">
-        
         <AnimatePresence>
           {status !== "idle" && status !== "loading" && (
-            <motion.div 
+            <motion.div
               className={`status-overlay ${status}`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -65,13 +64,19 @@ const ContactUsPage = () => {
                   <>
                     <FaCheckCircle className="status-icon" />
                     <h2>Message Received!</h2>
-                    <p>Thank you for reaching out. Our experts will contact you shortly.</p>
+                    <p>
+                      Thank you for reaching out. Our experts will contact you
+                      shortly.
+                    </p>
                   </>
                 ) : (
                   <>
                     <FaTimesCircle className="status-icon" />
                     <h2>Something Went Wrong</h2>
-                    <p>We couldn't process your request right now. Please try again later.</p>
+                    <p>
+                      We couldn't process your request right now. Please try
+                      again later.
+                    </p>
                   </>
                 )}
                 <button onClick={() => setStatus("idle")}>Close</button>
@@ -81,9 +86,14 @@ const ContactUsPage = () => {
         </AnimatePresence>
 
         <header className="contactpage-header">
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <span className="premium-tag">Assurre Plus</span>
-            <h1>Connect with our <span>Experts.</span></h1>
+            <h1>
+              Connect with our <span>Experts.</span>
+            </h1>
             <p>Your security journey starts with a conversation.</p>
           </motion.div>
         </header>
@@ -93,29 +103,29 @@ const ContactUsPage = () => {
             <h3 className="sub-heading">Send an Inquiry</h3>
             <form className="modern-form" onSubmit={handleSubmit}>
               <div className="input-row">
-                <input 
+                <input
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Your Name" 
-                  required 
+                  placeholder="Your Name"
+                  required
                 />
-                <input 
+                <input
                   name="mobile"
                   value={formData.mobile}
                   onChange={handleChange}
-                  placeholder="Phone Number" 
-                  required 
+                  placeholder="Phone Number"
+                  required
                 />
               </div>
-              
-              <input 
+
+              <input
                 name="emailid"
                 type="email"
                 value={formData.emailid}
                 onChange={handleChange}
-                placeholder="Email Address" 
-                required 
+                placeholder="Email Address"
+                required
               />
 
               <textarea
@@ -127,8 +137,12 @@ const ContactUsPage = () => {
                 required
               ></textarea>
 
-              <button className="submit-action-btn" disabled={status === "loading"}>
-                {status === "loading" ? "SENDING..." : "SEND MESSAGE"} <FaArrowRight />
+              <button
+                className="submit-action-btn"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "SENDING..." : "SEND MESSAGE"}{" "}
+                <FaArrowRight />
               </button>
             </form>
           </div>
@@ -137,15 +151,22 @@ const ContactUsPage = () => {
             <h3 className="sub-heading">Contact Details</h3>
             <div className="info-cards-stack">
               <a href="tel:+919881952606" className="clickable-info-box">
-                <div className="icon-wrap"><FaPhoneAlt /></div>
+                <div className="icon-wrap">
+                  <FaPhoneAlt />
+                </div>
                 <div className="text-wrap">
                   <label>Direct Support</label>
                   <p>+91 9881952606</p>
                 </div>
               </a>
 
-              <a href="mailto:assurreplus@gmail.com" className="clickable-info-box">
-                <div className="icon-wrap"><FaEnvelope /></div>
+              <a
+                href="mailto:assurreplus@gmail.com"
+                className="clickable-info-box"
+              >
+                <div className="icon-wrap">
+                  <FaEnvelope />
+                </div>
                 <div className="text-wrap">
                   <label>Official Email</label>
                   <p>assurreplus@gmail.com</p>
@@ -153,7 +174,9 @@ const ContactUsPage = () => {
               </a>
 
               <div className="clickable-info-box no-hover">
-                <div className="icon-wrap"><FaMapMarkerAlt /></div>
+                <div className="icon-wrap">
+                  <FaMapMarkerAlt />
+                </div>
                 <div className="text-wrap">
                   <label>Headquarters</label>
                   <p>Vignaharta, Bhusari Colony, Kothrud, Pune-38</p>
@@ -162,21 +185,29 @@ const ContactUsPage = () => {
             </div>
 
             <div className="features-strip">
-              <div className="feature"><FaClock /> <span>24/7 Response</span></div>
-              <div className="feature"><FaShieldAlt /> <span>Secure Handling</span></div>
-              <div className="feature"><FaUserTie /> <span>Expert Advice</span></div>
+              <div className="feature">
+                <FaClock /> <span>24/7 Response</span>
+              </div>
+              <div className="feature">
+                <FaShieldAlt /> <span>Secure Handling</span>
+              </div>
+              <div className="feature">
+                <FaUserTie /> <span>Expert Advice</span>
+              </div>
             </div>
           </div>
         </div>
 
         <section className="map-grand-section">
           <div className="map-title-area">
-             <h2>Find Us on <span>Google Maps</span></h2>
-             <div className="title-line"></div>
+            <h2>
+              Find Us on <span>Google Maps</span>
+            </h2>
+            <div className="title-line"></div>
           </div>
           <div className="contactus-map-container">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15135.244362174668!2d73.8055627!3d18.5035541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfbc902506e3%3A0xc3389b2f6762f03!2sAssurre%20Plus%20Insurance%20Broking%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.417392092972!2d73.78647207509766!3d18.51003106949628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1e1f4cda279%3A0x2776a45ea65b97af!2sAssurrePlus!5e0!3m2!1sen!2sin!4v1767418029111!5m2!1sen!2sin"
               width="100%"
               height="450"
               className="contactus-map"

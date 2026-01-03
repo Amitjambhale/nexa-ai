@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { 
   FaShieldAlt, FaChevronDown, FaChevronUp, FaHome, 
   FaInfoCircle, FaImages, FaNewspaper, FaRss, 
-  FaComments, FaQuestionCircle, FaPhoneAlt, FaFileInvoiceDollar 
+  FaComments, FaQuestionCircle, FaPhoneAlt, FaFileInvoiceDollar,
+  FaExclamationCircle
 } from "react-icons/fa";
 import Topbar from "./Topbar";
 import HeaderLogo from "../../../assets/icons/assureplus-logo-1.png";
@@ -72,7 +73,7 @@ const Header = () => {
     setIsInsuranceOpen(false);
   };
 
-  // Helper to format path (Slugify)
+  // Helper to format path
   const getProductPath = (title) => {
     return `/services/${title.toLowerCase().replace(/\s+/g, "-")}`;
   };
@@ -98,18 +99,18 @@ const Header = () => {
               <li><Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>Home</Link></li>
               <li><Link to="/about-us" className={`nav-item ${location.pathname === "/about-us" ? "active" : ""}`}>About Us</Link></li>
 
-              {/* 🔹 Conditionally Render Life Insurance Dropdown */}
-              {insurancePlans.length > 0 && (
-                <li 
-                  className={`nav-item dropdown-parent ${isHovered ? "is-open" : ""}`}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <span className="nav-link-text">
-                    Life Insurance <FaChevronDown className="chev-icon" />
-                  </span>
-                  
-                  <div className="mega-dropdown">
+              {/* 🔹 Life Insurance Dropdown */}
+              <li 
+                className={`nav-item dropdown-parent ${isHovered ? "is-open" : ""}`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span className="nav-link-text">
+                  Life Insurance <FaChevronDown className="chev-icon" />
+                </span>
+                
+                <div className="mega-dropdown">
+                  {insurancePlans.length > 0 ? (
                     <div className="dropdown-grid">
                       {insurancePlans.map((plan) => (
                         <Link 
@@ -123,9 +124,15 @@ const Header = () => {
                         </Link>
                       ))}
                     </div>
-                  </div>
-                </li>
-              )}
+                  ) : (
+                    <div className="no-data-dropdown">
+                      <FaExclamationCircle className="info-icon" />
+                      <p>No insurance plans found this time.</p>
+                      <span>Check back later for new updates.</span>
+                    </div>
+                  )}
+                </div>
+              </li>
 
               {navLinks.slice(2).map((link) => (
                 <li key={link.path}>
@@ -143,46 +150,49 @@ const Header = () => {
 
           <aside className={`mobile-sidebar ${isMenuOpen ? "side-active" : ""}`}>
             <div className="sidebar-inner">
-              <div className="sidebar-header">
-                <h3>Assurre Plus</h3>
-                <p>Sincerity • Security • Trust</p>
-              </div>
-              
               <ul className="mobile-nav-list">
                 <li className={isMenuOpen ? "fade-in" : ""}>
                   <Link to="/" onClick={closeMenu}>
-                    <span className="side-icon">{navLinks[0].icon}</span> {navLinks[0].name}
+                    <div className="side-icon">{navLinks[0].icon}</div>
+                    <span className="link-text">{navLinks[0].name}</span>
                   </Link>
                 </li>
                 <li className={isMenuOpen ? "fade-in" : ""}>
                   <Link to="/about-us" onClick={closeMenu}>
-                    <span className="side-icon">{navLinks[1].icon}</span> {navLinks[1].name}
+                    <div className="side-icon">{navLinks[1].icon}</div>
+                    <span className="link-text">{navLinks[1].name}</span>
                   </Link>
                 </li>
 
-                {/* 🔹 Conditionally Render Mobile Accordion */}
-                {insurancePlans.length > 0 && (
-                  <li className={`mobile-accordion ${isMenuOpen ? "fade-in" : ""}`}>
-                    <button className="accordion-btn" onClick={() => setIsInsuranceOpen(!isInsuranceOpen)}>
-                      <div className="btn-label">
-                        <span className="side-icon"><FaFileInvoiceDollar /></span> Life Insurance
-                      </div>
-                      {isInsuranceOpen ? <FaChevronUp /> : <FaChevronDown />}
-                    </button>
-                    <div className={`accordion-content ${isInsuranceOpen ? "active" : ""}`}>
-                      {insurancePlans.map((plan) => (
+                {/* 🔹 Mobile Accordion */}
+                <li className={`mobile-accordion ${isMenuOpen ? "fade-in" : ""}`}>
+                  <button className="accordion-btn" onClick={() => setIsInsuranceOpen(!isInsuranceOpen)}>
+                    <div className="btn-label-wrapper">
+                      <div className="side-icon"><FaFileInvoiceDollar /></div>
+                      <span className="link-text">Life Insurance</span>
+                    </div>
+                    {isInsuranceOpen ? <FaChevronUp className="arrow-icon" /> : <FaChevronDown className="arrow-icon" />}
+                  </button>
+                  <div className={`accordion-content ${isInsuranceOpen ? "active" : ""}`}>
+                    {insurancePlans.length > 0 ? (
+                      insurancePlans.map((plan) => (
                         <Link key={plan.ProductID} to={getProductPath(plan.ProductTitle)} onClick={closeMenu}>
                           <FaShieldAlt className="shield-icon" /> {plan.ProductTitle}
                         </Link>
-                      ))}
-                    </div>
-                  </li>
-                )}
+                      ))
+                    ) : (
+                      <div className="no-data-mobile">
+                        <p>No plans found this time.</p>
+                      </div>
+                    )}
+                  </div>
+                </li>
 
                 {navLinks.slice(2).map((link, index) => (
                   <li key={link.path} className={isMenuOpen ? "fade-in" : ""} style={{ transitionDelay: `${(index + 3) * 0.05}s` }}>
                     <Link to={link.path} onClick={closeMenu}>
-                      <span className="side-icon">{link.icon}</span> {link.name}
+                      <div className="side-icon">{link.icon}</div>
+                      <span className="link-text">{link.name}</span>
                     </Link>
                   </li>
                 ))}

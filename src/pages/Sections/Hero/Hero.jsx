@@ -21,29 +21,25 @@ const Hero = () => {
     const fetchBanners = async () => {
       try {
         const res = await getBanners();
-        if (res && res.code === 200 && res.data && res.data.banners && res.data.banners.length > 0) {
-          // DisplayOrder ke hisab se ascending order mein sort karna
-          const sortedBanners = res.data.banners.sort((a, b) => a.DisplayOrder - b.DisplayOrder);
-          setBanners(sortedBanners);
+        if (res?.code === 200 && res?.data?.banners?.length > 0) {
+          const sorted = res.data.banners.sort(
+            (a, b) => a.DisplayOrder - b.DisplayOrder
+          );
+          setBanners(sorted);
         } else {
           setBanners([]);
         }
       } catch (err) {
-        console.error("Error fetching banners:", err);
+        console.error(err);
         setBanners([]);
       } finally {
         setLoading(false);
       }
     };
-
     fetchBanners();
   }, []);
 
-  // Agar loading khatam ho jaye aur banners empty hon, toh poora section hide kar dein
-  if (!loading && banners.length === 0) {
-    return null;
-  }
-
+  if (!loading && banners.length === 0) return null;
   if (loading) return null;
 
   return (
@@ -54,7 +50,7 @@ const Hero = () => {
         speed={1000}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        onSlideChange={(s) => setActiveIndex(s.realIndex)}
         loop={banners.length > 1}
         className="hero-swiper"
       >
@@ -63,28 +59,36 @@ const Hero = () => {
             <div className="hero-slide-item">
               <div className="hero-container">
                 <div className="hero-split-wrapper">
-                  
-                  {/* LEFT IMAGE - Image click par BannerUrl open hoga */}
+
+                  {/* IMAGE */}
                   <div className="hero-image-side">
                     <AnimatePresence mode="wait">
                       {activeIndex === index && (
                         <motion.div
-                          key={`img-${slide.BannerID}`}
-                          initial={{ opacity: 0, scale: 0.9, x: -50 }}
+                          key={slide.BannerID}
+                          initial={{ opacity: 0, scale: 0.9, x: -40 }}
                           animate={{ opacity: 1, scale: 1, x: 0 }}
-                          exit={{ opacity: 0, scale: 0.9, x: -20 }}
-                          transition={{ duration: 0.8, ease: "easeOut" }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.7 }}
                           className="image-holder"
-                          style={{ cursor: slide.BannerUrl ? "pointer" : "default" }}
-                          onClick={() => slide.BannerUrl && window.open(slide.BannerUrl, "_blank")}
+                          onClick={() =>
+                            slide.BannerUrl &&
+                            window.open(slide.BannerUrl, "_blank")
+                          }
+                          style={{
+                            cursor: slide.BannerUrl ? "pointer" : "default",
+                          }}
                         >
-                          <img src={slide.attachmentUrl} alt={slide.BannerTitle} />
+                          <img
+                            src={slide.attachmentUrl}
+                            alt={slide.BannerTitle}
+                          />
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
 
-                  {/* RIGHT CONTENT */}
+                  {/* TEXT */}
                   <div className="hero-text-side">
                     <AnimatePresence mode="wait">
                       {activeIndex === index && (
@@ -93,7 +97,7 @@ const Hero = () => {
                           initial={{ opacity: 0, y: 30 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
-                          transition={{ duration: 0.6, delay: 0.2 }}
+                          transition={{ duration: 0.6, delay: 0.15 }}
                         >
                           <span className="hero-badge">
                             Assurre Plus Financial Services
@@ -101,9 +105,9 @@ const Hero = () => {
 
                           <h1>{slide.BannerTitle}</h1>
 
-                          {/* 3 Line limit description */}
                           <p className="banner-desc">
-                            {slide.Description || "Secure your family's future today with our comprehensive and flexible insurance plans tailored for you."}
+                            {slide.Description ||
+                              "Secure your family's future today with our comprehensive and flexible insurance plans tailored for you."}
                           </p>
 
                           <div className="hero-actions">
@@ -114,7 +118,10 @@ const Hero = () => {
                               </div>
                             </button>
 
-                            <button className="hero-btn-outline" onClick={() => navigate("/faq")}>
+                            <button
+                              className="hero-btn-outline"
+                              onClick={() => navigate("/faq")}
+                            >
                               View FAQ
                             </button>
                           </div>
