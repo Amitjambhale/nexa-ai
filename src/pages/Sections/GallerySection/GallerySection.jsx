@@ -6,6 +6,7 @@ import { getGallary } from "services/home/SectionsApis/sectionsapi";
 import "./GallerySection.scss";
 
 const TileCard = ({ item }) => {
+  const navigate = useNavigate(); // Navigation hook added inside TileCard
   const [currentImg, setCurrentImg] = useState(0);
 
   useEffect(() => {
@@ -28,6 +29,9 @@ const TileCard = ({ item }) => {
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
+      // Navigation on click with state data
+      onClick={() => navigate(`/gallery/${item.id}`, { state: { gallery: item } })}
+      style={{ cursor: "pointer" }}
     >
       <div className="gallerysection-tile-media">
         <AnimatePresence mode="wait">

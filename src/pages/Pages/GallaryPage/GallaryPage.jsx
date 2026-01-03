@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaImages } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { getGallary } from "services/home/SectionsApis/sectionsapi";
 import PremiumLoader from "components/Loader/Loader";
 import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
@@ -14,6 +15,8 @@ const GallaryPage = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const limit = 10;
+  
+  const navigate = useNavigate(); // Hook for navigation
 
   const fetchGalleries = async (currentPage, isLoadMore = false) => {
     try {
@@ -58,7 +61,7 @@ const GallaryPage = () => {
     );
   }
 
-  // 🔴 EMPTY STATE (Using Reusable Component)
+  // 🔴 EMPTY STATE
   if (!loading && galleries.length === 0) {
     return (
       <EmptyState 
@@ -94,6 +97,9 @@ const GallaryPage = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            // 🔹 Navigation logic added here
+            onClick={() => navigate(`/gallery/${album.id}`, { state: { gallery: album } })}
+            style={{ cursor: 'pointer' }}
           >
             <div className="gallarypage-main-frame">
               <img
@@ -140,7 +146,6 @@ const GallaryPage = () => {
         ))}
       </div>
 
-      {/* LOAD MORE */}
       <LoadMoreButton
         onLoadMore={handleLoadMore}
         loading={loadMoreLoading}

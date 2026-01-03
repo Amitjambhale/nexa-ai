@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { getSeo } from "services/home/seo";
+import { getSeo } from "services/home/PagesApis/pages";
 import { errorResponse, failResponse } from "config/config";
 
 const LocationTracker = () => {
@@ -56,18 +56,26 @@ const LocationTracker = () => {
   return (
     <>
       <Helmet>
-        <title>{metatitle || "Holly Minds"}</title>
+        <title>
+          {metatitle || "Assure Plus | Reliable Insurance Solutions & Support"}
+        </title>
         <meta
           name="description"
           content={
             metadescription ||
-            "Holly Minds is a leading logo design and branding company in Pune, India. We specialize in creative logo design, brand identity development, graphic design, digital branding, and marketing solutions that help businesses build a strong and memorable brand presence."
+            "Assure Plus is a leading insurance service provider offering comprehensive life, health, and general insurance solutions. We simplify insurance with expert guidance, quick claim settlements, and personalized policy plans."
           }
         />
-        {/* <meta name="keywords" content={metakeywords || "IAS academy, IAS coaching, best IAS coaching in India, IAS coaching classes, civil service coaching, upsc coaching, best coaching for IAS, top IAS coaching in Delhi, best upsc coaching in India, upsc classes, top IAS coaching in India, upsc coaching in Delhi, best upsc coaching in Delhi, IAS coaching centre in Delhi, psir online coaching, online IAS coaching, online IAS academy, upsc online coaching classes, civil service coaching, psir optional online classes"} /> */}
+        <meta
+          name="keywords"
+          content={
+            metakeywords ||
+            "Assure Plus, best insurance company, life insurance, health insurance, general insurance, claim settlement, insurance consultancy, affordable policy plans"
+          }
+        />
         <link
           rel="canonical"
-          href={metacanonocaltag || "https://www.hollyminds.com/"}
+          href={metacanonocaltag || "https://www.assureplus.com/"}
         />
         <script type="application/ld+json">{jsonscript}</script>
       </Helmet>

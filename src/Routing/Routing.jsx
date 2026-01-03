@@ -13,6 +13,7 @@ import TestimonialsPage from "pages/Pages/TestimonialsPage/TestimonialsPage.jsx"
 import GallaryPage from "pages/Pages/GallaryPage/GallaryPage";
 import BlogPage from "pages/Pages/BlogPage/blog";
 import BlogDetail from "pages/Pages/BlogPage/BlogDetail";
+import GalleryDetailPage from "pages/Pages/GalleryDetailPage/GalleryDetailPage";
 
 // Pages
 
@@ -29,6 +30,7 @@ const Routing = () => {
         <Route path="/gallery" element={<GallaryPage />} />
         <Route path="/blogs" element={<BlogPage/>} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/gallery/:id" element={<GalleryDetailPage />} />
       </Route>
 
       {/* PAGES WITHOUT ANY LAYOUT */}

@@ -105,3 +105,18 @@ export const getBlogDetailById = async (data = {}) => {
     throw err;
   }
 };
+
+// get seo
+export const getSeo = async (data = {}) => {
+  try {
+    const response = await axios.get("/get-seo-details", { 
+      params: data 
+    });
+
+    return decryptData(response);
+  } catch (err) {
+    console.error("getSeo API Error:", err);
+    throw err;
+  }
+};
+
