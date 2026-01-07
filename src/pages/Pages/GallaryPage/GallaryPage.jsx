@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FaImages } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { getGallary } from "services/home/SectionsApis/sectionsapi";
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
 import EmptyState from "components/EmptyState/EmptyState.jsx";
 import "./GallaryPage.scss";

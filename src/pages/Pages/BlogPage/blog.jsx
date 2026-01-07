@@ -4,7 +4,7 @@ import { getBlogsList, getFeaturedBlogsList } from "services/home/PagesApis/page
 import { Link, useNavigate } from "react-router-dom";
 
 // Standard Components
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
 import EmptyState from "components/EmptyState/EmptyState.jsx";
 

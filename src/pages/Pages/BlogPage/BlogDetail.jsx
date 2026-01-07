@@ -9,7 +9,7 @@ import {
 import { FaRegCalendarAlt, FaChevronRight, FaArrowLeft } from "react-icons/fa";
 
 // Standard components
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 import EmptyState from "components/EmptyState/EmptyState.jsx";
 
 const BlogDetail = () => {

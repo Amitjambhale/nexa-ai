@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./Loader.scss";
+import "./loader.scss";
 
 const PremiumLoader = () => {
   return (

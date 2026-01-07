@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getDynamicPages } from "services/home/PagesApis/pages";
 import "./dynamicPage.scss";
 import NotFound from "pages/pageNotFound/NotFound";
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 
 const DynamicPage = () => {
   const { dynamicpage } = useParams();

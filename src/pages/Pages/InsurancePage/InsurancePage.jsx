@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { geProductByParentID } from "services/home/PagesApis/pages";
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
 import {
   ArrowRight,

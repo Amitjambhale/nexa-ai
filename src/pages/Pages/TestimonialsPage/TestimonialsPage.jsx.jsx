@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaShieldAlt, FaQuoteLeft } from "react-icons/fa";
 import { getTestimonials } from "services/home/SectionsApis/sectionsapi";
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
 import EmptyState from "components/EmptyState/EmptyState.jsx";
 import "./TestimonialsPage.scss";

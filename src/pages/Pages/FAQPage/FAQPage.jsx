@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaShieldAlt, FaPhoneAlt, FaChevronRight, FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { getFAQ } from "services/home/PagesApis/pages";
-import PremiumLoader from "components/Loader/Loader";
+import PremiumLoader from "components/Loader/loader";
 import EmptyState from "components/EmptyState/EmptyState.jsx";
 import "./FAQPage.scss";
 
