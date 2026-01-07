@@ -111,11 +111,22 @@ const ContactUsPage = () => {
                   required
                 />
                 <input
+                  type="tel"
                   name="mobile"
                   value={formData.mobile}
-                  onChange={handleChange}
                   placeholder="Phone Number"
+                  inputMode="numeric"
+                  pattern="[0-9]{10}"
+                  maxLength={10}
                   required
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "");
+                    if (value.length <= 10) {
+                      handleChange({
+                        target: { name: "mobile", value },
+                      });
+                    }
+                  }}
                 />
               </div>
 

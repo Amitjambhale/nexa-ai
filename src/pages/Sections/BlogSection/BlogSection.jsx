@@ -47,7 +47,7 @@ const BlogSection = () => {
 
   return (
     <section className="simple-blog-section">
-      <div className="container">
+      <div className="blog-section-container">
         <header className="gal-header">
           <motion.h2 
             className="title"

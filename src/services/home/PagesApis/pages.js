@@ -54,6 +54,24 @@ export const getParentDropdown = async (data = {}) => {
   }
 };
 
+// get product by parent id
+export const geProductByParentID = async (data = {}) => {
+  try {
+    const payload = {
+      ...encryptReqData(data),
+    };
+
+    const response = await axios.get("/product-by-Parent", {
+      params: payload,
+    });
+
+    return decryptData(response);
+  } catch (err) {
+    console.error("getParentDropdown API Error:", err);
+    throw err;
+  }
+};
+
 //blogs apis
 export const getBlogsList = async (data = {}) => {
   try {
@@ -120,3 +138,21 @@ export const getSeo = async (data = {}) => {
   }
 };
 
+
+
+export const getDynamicPages = async (data = {}) => {
+  try {
+    const payload = {
+      ...encryptReqData(data),
+    };
+
+    const response = await axios.get("/page-details", {
+      params: payload,
+    });
+
+    return decryptData(response);
+  } catch (err) {
+    console.error("getDynamicPages API Error:", err);
+    throw err;
+  }
+};

@@ -8,7 +8,7 @@ $bg-light: #f4f7fa;
   background: $bg-light;
   overflow: hidden;
 
-  .container {
+  .blog-section-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
@@ -170,5 +170,5 @@ $bg-light: #f4f7fa;
       .blog-title, .blog-desc { min-height: auto; } // Mobile pe auto height better lagti hai
     }
   }
-  .container { padding: 0 20px !important; }
+  .blog-section-container { padding: 0 20px !important; }
 }

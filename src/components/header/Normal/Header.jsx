@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { 
   FaShieldAlt, FaChevronDown, FaChevronUp, FaHome, 
   FaInfoCircle, FaImages, FaNewspaper, FaRss, 
@@ -19,6 +19,7 @@ const Header = () => {
   const [insurancePlans, setInsurancePlans] = useState([]);
   const location = useLocation();
   const hoverTimeoutRef = useRef(null);
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: "Home", path: "/", icon: <FaHome /> },
@@ -73,6 +74,8 @@ const Header = () => {
     setIsInsuranceOpen(false);
   };
 
+
+
   // Helper to format path
   const getProductPath = (title) => {
     return `/services/${title.toLowerCase().replace(/\s+/g, "-")}`;
@@ -104,6 +107,7 @@ const Header = () => {
                 className={`nav-item dropdown-parent ${isHovered ? "is-open" : ""}`}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+            
               >
                 <span className="nav-link-text">
                   Life Insurance <FaChevronDown className="chev-icon" />
@@ -115,7 +119,7 @@ const Header = () => {
                       {insurancePlans.map((plan) => (
                         <Link 
                           key={plan.ProductID} 
-                          to={getProductPath(plan.ProductTitle)} 
+                          to={`/insurance/${plan.ProductID}`} 
                           className="dropdown-link" 
                           onClick={() => setIsHovered(false)}
                         >
@@ -176,7 +180,7 @@ const Header = () => {
                   <div className={`accordion-content ${isInsuranceOpen ? "active" : ""}`}>
                     {insurancePlans.length > 0 ? (
                       insurancePlans.map((plan) => (
-                        <Link key={plan.ProductID} to={getProductPath(plan.ProductTitle)} onClick={closeMenu}>
+                        <Link key={plan.ProductID} to={`/insurance/${plan.ProductID}`} onClick={closeMenu}>
                           <FaShieldAlt className="shield-icon" /> {plan.ProductTitle}
                         </Link>
                       ))

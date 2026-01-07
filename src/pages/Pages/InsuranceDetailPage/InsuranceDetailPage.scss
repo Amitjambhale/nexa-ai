@@ -1,0 +1,481 @@
+$navy: #0f172a;
+$gold: #c5a059;
+$white: #ffffff;
+$slate: #64748b;
+$bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+
+.insure-details-modern-detail-root {
+  background: #fdfdfd;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+
+  .insure-details-container {
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    max-width: 100vw;
+  }
+
+  // --- Wave Background ---
+  .insure-details-wave-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    background: $navy;
+    overflow: hidden;
+    z-index: 1;
+
+    .insure-details-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100px;
+      background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg") repeat-x;
+      opacity: 0.1;
+      animation: waveMove 20s linear infinite;
+    }
+  }
+
+  @keyframes waveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  // --- Navigation & Enquiry Button ---
+  .insure-details-detail-nav {
+    position: sticky;
+    top: 0;
+    height: 85px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+
+    .insure-details-nav-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .insure-details-back-link {
+      background: rgba($white, 0.1);
+      border: 1px solid rgba($white, 0.2);
+      color: $white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      @media (max-width: 992px) {
+        padding: 15px 20px;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 10px;
+        gap: 5px;
+      }
+
+      &:hover {
+        background: $white;
+        color: $navy;
+      }
+    }
+
+    .insure-details-enquiry-btn-animated {
+      position: relative;
+      background: $gold;
+      color: $white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba($gold, 0.4);
+      @media (max-width: 992px) {
+        padding: 15px 20px;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 10px;
+        gap: 5px;
+      }
+
+      .insure-details-btn-wave {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba($white, 0.4);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: ripple 3s infinite;
+      }
+    }
+  }
+
+  @keyframes ripple {
+    0% { width: 0; height: 0; opacity: 0.5; }
+    100% { width: 300px; height: 300px; opacity: 0; }
+  }
+
+  // --- Main Hero Card ---
+  .insure-details-detail-hero-section {
+    margin-top: 40px;
+    margin-bottom: 50px;
+
+    .insure-details-hero-card-main {
+      background: $white;
+      border-radius: 40px;
+      padding: 50px;
+      box-shadow: 0 40px 80px rgba($navy, 0.08);
+      position: relative;
+      @media (max-width: 992px) {
+        padding: 20px;
+      }
+
+      .insure-details-hero-flex {
+        display: flex;
+        gap: 60px;
+        align-items: center;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          text-align: start;
+        }
+      }
+
+      .insure-details-hero-image-holder {
+        width: 200px;
+        height: 200px;
+        background: #f8fafc;
+        border-radius: 40px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #f1f5f9;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .insure-details-hero-text-holder {
+        flex: 1;
+        width: 100%;
+
+        .insure-details-meta-tags {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 15px;
+
+          @media (max-width: 768px) {
+            justify-content: flex-start;
+          }
+
+          .insure-details-tag {
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+          }
+
+          .insure-details-tag.gold {
+            background: rgba($gold, 0.1);
+            color: $gold;
+          }
+
+          .insure-details-tag.navy {
+            background: rgba($navy, 0.05);
+            color: $navy;
+          }
+        }
+
+        h1 {
+          font-size: 44px;
+          color: $navy;
+          font-weight: 900;
+          margin-bottom: 15px;
+          line-height: 1.1;
+          word-break: break-word;
+          @media (max-width: 992px) {
+            font-size: 32px;
+            font-weight: 700;
+          }
+        }
+
+        .insure-details-summary-text {
+          font-size: 18px;
+          color: $slate;
+          line-height: 1.6;
+          word-break: break-word;
+          @media (max-width: 992px) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  // --- Body Document Section ---
+  .insure-details-main-content-body {
+    .insure-details-document-paper {
+      background: $white;
+      border-radius: 40px;
+      padding: 20px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      max-width: 100%;
+      overflow: hidden;
+
+      @media (max-width: 600px) {
+        padding: 20px;
+      }
+
+      .insure-details-doc-header {
+        margin-bottom: 10px;
+        padding: 30px 0px 20px 50px;
+        @media (max-width: 992px) {
+          padding: 0px;
+        }
+
+        .insure-details-line {
+          width: 50px;
+          height: 5px;
+          background: $gold;
+          border-radius: 10px;
+          margin-bottom: 15px;
+        }
+
+        h3 {
+          font-size: 26px;
+          color: $navy;
+          font-weight: 900;
+        }
+      }
+
+      .insure-details-rich-description {
+        color: #334155;
+        font-size: 17px;
+        line-height: 1.8;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+
+        .insure-details-html-wrapper {
+          padding: 20px;
+          max-width: 100%;
+
+          * {
+          
+            box-sizing: border-box;
+                @media (max-width: 992px) {
+             max-width: 100% !important;
+          }
+          }
+
+          img {
+            height: auto !important;
+            border-radius: 10px;
+          }
+
+          table {
+            width: 100% !important;
+            table-layout: fixed;
+          }
+
+          @media (max-width: 992px) {
+            padding: 0px;
+          }
+        }
+
+        .insure-details-no-desc {
+          text-align: center;
+          padding: 50px 0;
+          color: #94a3b8;
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  // --- Related Plans ---
+  .insure-details-related-bottom-section {
+    margin-top: 100px;
+
+    .insure-details-section-title {
+      margin-bottom: 40px;
+
+      h2 {
+        font-size: 28px;
+        font-weight: 900;
+        color: $navy;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+    }
+
+    .insure-details-related-horizontal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+      max-width: 1300px;
+      margin: 0 auto;
+
+      .insure-details-related-glass-card {
+        background: rgba($white, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid #f1f5f9;
+        border-radius: 30px;
+        padding: 25px;
+        cursor: pointer;
+        transition: 0.4s;
+        box-shadow: 0 20px 40px rgba($navy, 0.05);
+        overflow: hidden;
+
+        &:hover {
+          background: $white;
+          box-shadow: 0 20px 40px rgba($navy, 0.09);
+          border-color: $gold;
+        }
+
+        .insure-details-mini-card-img {
+          height: 130px;
+          background: #f8fafc;
+          border-radius: 20px;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        .insure-details-mini-card-info {
+          h4 {
+            font-size: 18px;
+            color: $navy;
+            font-weight: 800;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          p {
+            font-size: 13px;
+            color: $slate;
+            line-height: 1.4;
+            height: 36px;
+            overflow: hidden;
+            margin-bottom: 20px;
+          }
+
+          .insure-details-mini-card-footer {
+            font-size: 12px;
+            font-weight: 800;
+            color: $gold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ==================== MOBILE OPTIMIZATIONS ==================== */
+@media (max-width: 768px) {
+  .insure-details-modern-detail-root {
+    .insure-details-container {
+      padding: 0 8px !important;
+    }
+
+    .insure-details-detail-nav {
+      padding: 0 10px;
+      height: 70px;
+    }
+
+    .insure-details-detail-hero-section {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .insure-details-hero-card-main {
+      padding: 15px !important;
+      border-radius: 20px;
+    }
+
+    .insure-details-hero-flex {
+      gap: 20px;
+    }
+
+    .insure-details-document-paper {
+      padding: 15px !important;
+      border-radius: 20px;
+    }
+
+    .insure-details-doc-header {
+      padding: 15px 0 !important;
+    }
+
+    .insure-details-html-wrapper {
+      padding: 0 !important;
+    }
+
+    .insure-details-related-bottom-section {
+      margin-top: 60px;
+    }
+
+    .insure-details-related-horizontal-grid {
+      gap: 15px;
+    }
+
+    .insure-details-related-glass-card {
+      padding: 15px;
+    }
+  }
+}
+
+/* Table handling — no cut, wrap to next line + horizontal scroll if needed */
+.insure-details-rich-description .insure-details-html-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.insure-details-rich-description .insure-details-html-wrapper table {
+  table-layout: auto !important;
+  width: auto !important;
+  min-width: 100%;
+}
+
+.insure-details-rich-description .insure-details-html-wrapper td,
+.insure-details-rich-description .insure-details-html-wrapper th {
+  word-break: break-word;
+  padding: 8px;
+}

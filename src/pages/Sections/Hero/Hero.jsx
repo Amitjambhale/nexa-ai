@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "./Hero.scss";
 
-const Hero = () => {
+const Hero = ({ onExploreClick }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -111,7 +111,7 @@ const Hero = () => {
                           </p>
 
                           <div className="hero-actions">
-                            <button className="hero-btn-primary">
+                            <button className="hero-btn-primary" onClick={onExploreClick}>
                               <span>Explore Plans</span>
                               <div className="icon-circle">
                                 <FaChevronRight />

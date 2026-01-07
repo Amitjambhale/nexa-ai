@@ -1,82 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  TrendingUp,
-  Baby,
-  Home,
-  Banknote,
-  ShieldCheck,
-  Umbrella,
-  RefreshCw,
-  PiggyBank,
-  ArrowRight,
-} from "lucide-react";
+import { useNavigate } from "react-router-dom"; // Navigation ke liye
+import { ArrowRight, ShieldCheck } from "lucide-react"; 
+import { getParentDropdown } from "services/home/PagesApis/pages"; 
 import "./LifeInsuranceSection.scss";
 
-const insurancePlans = [
-  {
-    id: 1,
-    title: "Endowment Plans",
-    desc: "Build long-term savings while enjoying life cover and guaranteed maturity benefits.",
-    icon: <TrendingUp />,
-    color: "#c5a059",
-  },
-  {
-    id: 2,
-    title: "Children Plans",
-    desc: "Secure your child’s education, marriage, and future goals even in your absence.",
-    icon: <Baby />,
-    color: "#1a2b4c",
-  },
-  {
-    id: 3,
-    title: "Pension Plans",
-    desc: "Ensure a steady income after retirement and live a stress-free golden life.",
-    icon: <Home />,
-    color: "#c5a059",
-  },
-  {
-    id: 4,
-    title: "Money Back Plans",
-    desc: "Get periodic returns during the policy term along with complete life protection.",
-    icon: <Banknote />,
-    color: "#1a2b4c",
-  },
-  {
-    id: 5,
-    title: "Whole Life Plans",
-    desc: "Lifetime protection with savings benefits to support your family for generations.",
-    icon: <ShieldCheck />,
-    color: "#1a2b4c",
-  },
-  {
-    id: 6,
-    title: "ULIP Plans",
-    desc: "Combine insurance and investment to grow wealth while protecting your loved ones.",
-    icon: <Umbrella />,
-    color: "#c5a059",
-  },
-  {
-    id: 7,
-    title: "Term Plans",
-    desc: "High coverage at affordable premiums to safeguard your family’s financial future.",
-    icon: <RefreshCw />,
-    color: "#1a2b4c",
-  },
-  {
-    id: 8,
-    title: "Micro Insurance",
-    desc: "Affordable insurance solutions designed for low-income families and individuals.",
-    icon: <PiggyBank />,
-    color: "#c5a059",
-  },
-];
-
 const LifeInsuranceSection = () => {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await getParentDropdown();
+        if (res.code === 200 && res.data?.products?.length > 0) {
+          setProducts(res.data.products);
+        }
+      } catch (err) {
+        console.error("API Error:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  if (!isLoading && products.length === 0) return null;
+  if (isLoading) return null;
+
   return (
     <section className="life-ins-wrapper">
       <div className="life-container">
-        {/* Section Header */}
         <motion.div
           className="life-header"
           initial={{ opacity: 0, y: 20 }}
@@ -84,46 +39,56 @@ const LifeInsuranceSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <span className="life-tag">OUR SPECIALIZATION</span>
-
           <h2>
             Life <span>Insurance</span> Plans
           </h2>
-          {/* <div className="life-underline"></div> */}
         </motion.div>
 
-        {/* Plans Grid */}
         <div className="life-grid">
-          {insurancePlans.map((plan, index) => (
+          {products.map((plan, index) => (
             <motion.div
               className="life-card"
-              key={plan.id}
+              key={plan.ProductID}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              onClick={() => navigate(`/insurance/${plan.ProductID}`)} // Card click navigation
+              style={{ cursor: 'pointer' }}
             >
-              {/* Hover Background */}
               <div className="life-card-bg"></div>
 
               <div className="life-content-inner">
-                <div
-                  className="life-icon-box"
-                  style={{ "--icon-color": plan.color }}
-                >
-                  {plan.icon}
+                <div className="life-icon-box">
+                  {plan.ProductImg ? (
+                    <img 
+                      src={plan.imageUrl} 
+                      alt={plan.ProductTitle}
+                      onError={(e) => { e.target.style.display = 'none'; }} 
+                      className="dynamic-prod-img"
+                    />
+                  ) : (
+                    <ShieldCheck size={30} color="#c5a059" />
+                  )}
                 </div>
 
-                <h3>{plan.title}</h3>
+                <h3 className="life-title-truncate" title={plan.ProductTitle}>
+                  {plan.ProductTitle}
+                </h3>
 
-                <p className="life-desc">{plan.desc}</p>
+                <p className="life-desc-truncate" title={plan.ShortDesc}>
+                  {plan.ShortDesc}
+                </p>
 
                 <button className="life-read-btn">
-                  <span>READ MORE</span>
+                  <span>Explore Plans</span>
                   <ArrowRight size={16} />
                 </button>
               </div>
 
-              <div className="life-card-number">0{index + 1}</div>
+              <div className="life-card-number">
+                {index + 1 < 10 ? `0${index + 1}` : index + 1}
+              </div>
             </motion.div>
           ))}
         </div>
