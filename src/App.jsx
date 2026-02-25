@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import "./App.scss";
 import Routing from "./Routing/Routing";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
-import { Toaster } from "react-hot-toast";
+
 import { AxiosInterceptor } from "config/axiosInstance";
 import {
   disableReactDevTools,
   errorResponse,
   failResponse,
 } from "config/config";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -29,7 +29,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <AxiosInterceptor>
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_LOGIN}>
           <div className="App position-relative">
             <ScrollToTop />
             
@@ -46,7 +45,6 @@ const App = () => {
             //   },
             // }}
           />
-        </GoogleOAuthProvider>
       </AxiosInterceptor>
     </BrowserRouter>
   );
