@@ -1,249 +1,150 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./Footer.scss";
 import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaFacebookF,
   FaTwitter,
   FaInstagram,
-  FaChevronRight,
+  FaLinkedinIn,
+  FaGithub,
+  FaPaperPlane,
 } from "react-icons/fa";
-import FooterPowerby from "../../assets/icons/footer-powerby.png";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
-const year = new Date().getFullYear();
+  const year = new Date().getFullYear();
+  const location = useLocation();
+
+  // 🔥 HEADER HEIGHT + SAFE OFFSET (sticky header + spacing)
+  const HEADER_OFFSET = 110;
+
+  const scrollToSection = (sectionId) => {
+    // Agar home page par nahi ho to pehle home par redirect
+    if (location.pathname !== "/") {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+      const y =
+        element.getBoundingClientRect().top +
+        window.pageYOffset -
+        HEADER_OFFSET;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <footer className="footer-main">
-      {/* Floating Contact Section */}
-      <div className="footer-contact-cards">
-        <div className="footer-container">
-          <div className="footer-card">
-            <div className="footer-card-icon">
-              <FaMapMarkerAlt />
-            </div>
-            <div className="footer-card-info">
-              <h4>Visit Us</h4>
-              <p>
-                Vignaharta, Right Bhusari Colony, Near Runwal Samruddhi,
-                Kothrud, Pune-411038, Maharashtra, India
-              </p>
-            </div>
-          </div>
+    <footer className="saas-footer">
+      {/* Background Animated Glows */}
+      <div className="footer-glow-1"></div>
+      <div className="footer-glow-2"></div>
 
-          <div
-            className="footer-card"
-            onClick={() => (window.location.href = "tel:+919881952606")}
-          >
-            <div className="footer-card-icon">
-              <FaPhoneAlt />
-            </div>
-            <div className="footer-card-info">
-              <h4>Call Us</h4>
-              <p>+91 9881952606</p>
-            </div>
-          </div>
-
-          <div
-            className="footer-card"
-            onClick={() =>
-              (window.location.href = "mailto:assurreplus@gmail.com")
-            }
-          >
-            <div className="footer-card-icon">
-              <FaEnvelope />
-            </div>
-            <div className="footer-card-info">
-              <h4>Email Us</h4>
-              <p>assurreplus@gmail.com</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Footer Links Section */}
-      <div className="footer-bottom-grid">
-        <div className="footer-container">
-          <div className="footer-column footer-brand">
-            <h3 className="footer-logo-text">Assurre Plus</h3>
-            <p>
-              We are your trusted partner in life insurance and financial
-              security, committed to delivering reliable solutions that
-              safeguard your future. With integrity, professionalism, and expert
-              guidance, we help you make informed decisions and secure long-term
-              financial protection for you and your family.
-            </p>
-            <div className="footer-social-box">
-              
-              <a
-                href="https://www.facebook.com/assurre.plus"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaFacebookF />
-              </a>
-              <a
-                href="https://x.com/DillepPaatil?s=08"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="https://www.instagram.com/dilleppaatil/?igshid=w28j695atkby"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaInstagram />
-              </a>
-            </div>
-          </div>
-
-          <div className="footer-column">
-            <h3>Important Links</h3>
-            <ul>
-              <li>
-                <Link
-                  to="https://customer.onlinelic.in/LICEPS/portlets/visitor/updateContact/UpdateContactController.jpf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> Update Contact Details at LIC
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="http://www.licindia.in/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> LIC of India
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="http://ixforms.eshaansystems.com"
-                  target="_new"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> LIC Forms
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="https://ebiz.licindia.in/D2CPM/#DirectPay"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> LIC Premium - Pay Direct
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="http://www.licindia.in/Customer-Services/Bonus-Information"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> LIC Bonus Information
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="http://www.licindia.in/Customer-Services/Tax-Benefit"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> LIC Policy Income Tax Rule
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="https://www.starhealth.in/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> Star Health Insurance
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="https://licindia.in/Customer-Services/NRI-Center"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaChevronRight /> NRI Center
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="footer-column">
-            <h3>Company</h3>
-            <ul>
-              <li>
-                <Link to="/about-us">
-                  <FaChevronRight /> About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/gallery">
-                  <FaChevronRight /> Gallery
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <FaChevronRight /> News
-                </Link>
-              </li>
-              <li>
-                <Link to="/testimonials">
-                  <FaChevronRight /> Testimonial
-                </Link>
-              </li>
-              <li>
-                <Link to="/blogs">
-                  <FaChevronRight /> Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq">
-                  <FaChevronRight /> FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact-us">
-                  <FaChevronRight /> Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div className="footer-copyright">
-        <div className="footer-container">
-          <p>
-            Disclaimer |{" "}
-            <a
-              href="https://assurreplus.com/dc/privacypolicy.html"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Privacy Policy
-            </a>{" "}
+      <div className="footer-container">
+        {/* 🔥 Brand Section */}
+        <div className="footer-col brand">
+          <h2 className="logo-text">
+            Nexa<span>AI</span>
+          </h2>
+          <p className="brand-desc">
+            The world's most advanced AI-driven security infrastructure for modern SaaS teams.
+            Protect your digital assets with neural intelligence.
           </p>
-            <p>&copy; {year} Assurre Plus. All Rights Reserved.</p>
-          {/* <div className="footer-powered">
-            <span>Powered By</span>
-            <a
-              href="https://instrasoftsolutions.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={FooterPowerby} alt="Instrasoft" />
+
+          <div className="social-group">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="social-link">
+              <FaGithub />
             </a>
-          </div> */}
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-link">
+              <FaLinkedinIn />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social-link">
+              <FaTwitter />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-link">
+              <FaInstagram />
+            </a>
+          </div>
+        </div>
+
+        {/* 🚀 Navigation (FIXED SCROLL) */}
+        <div className="footer-col links-col">
+          <h3>Platform</h3>
+          <ul className="footer-links">
+            <li>
+              <button onClick={() => scrollToSection("features")}>
+                AI Features
+              </button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("pricing")}>
+                Secure Plans
+              </button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("faq")}>
+                Help Center
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* 📚 Legal */}
+        <div className="footer-col links-col">
+          <h3>Legal</h3>
+          <ul className="footer-links">
+            <li>
+              <button onClick={() => scrollToSection("privacy")}>
+                Privacy Policy
+              </button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("terms")}>
+                Terms of Service
+              </button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("security")}>
+                Security Audit
+              </button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("cookie")}>
+                Cookie Policy
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* 📩 Newsletter */}
+        <div className="footer-col newsletter">
+          <div className="newsletter-card">
+            <h3>Stay Updated</h3>
+            <p>Join 2,000+ teams receiving our neural security updates.</p>
+            <div className="newsletter-box">
+              <input type="email" placeholder="Your work email" />
+              <button aria-label="Subscribe">
+                <FaPaperPlane />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="footer-bottom">
+        <div className="container-bottom">
+          <p className="copyright">
+            © {year} NexaAI Systems. Built for the future.
+          </p>
+          <div className="status-badge">
+            <span className="dot"></span>
+            <span className="status-text">All Systems Operational</span>
+          </div>
         </div>
       </div>
     </footer>

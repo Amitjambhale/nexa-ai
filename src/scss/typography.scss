@@ -1,140 +1,140 @@
-@import "./index.scss";
+// @import "./index.scss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-// html {
-// 	scroll-behavior: smooth;
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
 // }
 
-body {
-  font-family: "Red Hat Display";
-  font-size: 15px;
-  font-weight: 400;
-  // color: $text-color;
-  letter-spacing: 0.01em;
-  // overscroll-behavior: contain;
+// // html {
+// // 	scroll-behavior: smooth;
+// // }
 
-  @include break-point(desktop) {
-    font-size: 14px;
-  }
-}
+// body {
+//   font-family: "Red Hat Display";
+//   font-size: 15px;
+//   font-weight: 400;
+//   // color: $text-color;
+//   letter-spacing: 0.01em;
+//   // overscroll-behavior: contain;
 
-a {
-  display: inline-block;
-  color: $blue-color;
-  @include transition;
-  text-decoration: none;
+//   @include break-point(desktop) {
+//     font-size: 14px;
+//   }
+// }
 
-  &:hover {
-    color: $red-color;
-  }
-}
+// a {
+//   display: inline-block;
+//   color: $blue-color;
+//   @include transition;
+//   text-decoration: none;
 
-span {
-  display: inline-block;
-}
+//   &:hover {
+//     color: $red-color;
+//   }
+// }
 
-p {
-  margin-bottom: 15px;
-}
+// span {
+//   display: inline-block;
+// }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
+// p {
+//   margin-bottom: 15px;
+// }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  color: $title-color;
-  font-weight: 700;
-  line-height: 1.4;
-  font-family: "Red Hat Display";
-  padding-bottom: 10px;
-  margin-bottom: 0;
-  @include break-point(mobile) {
-    margin-bottom: 0;
-  }
-}
-h5 {
-  font-weight: 500;
-}
+// ul {
+//   list-style: none;
+//   margin: 0;
+//   padding-left: 0;
+// }
 
-h6 {
-  font-weight: bold;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5 {
+//   // color: $title-color;
+//   font-weight: 700;
+//   line-height: 1.4;
+//   font-family: "Red Hat Display";
+//   padding-bottom: 10px;
+//   margin-bottom: 0;
+//   @include break-point(mobile) {
+//     margin-bottom: 0;
+//   }
+// }
+// h5 {
+//   font-weight: 500;
+// }
 
-h1 {
-  font-size: 55px;
-}
+// h6 {
+//   font-weight: bold;
+// }
 
-h2 {
-  font-size: 45px;
-}
+// h1 {
+//   font-size: 55px;
+// }
 
-h3 {
-  font-size: 32px;
-}
+// h2 {
+//   font-size: 45px;
+// }
 
-h4 {
-  font-size: 27px;
-}
+// h3 {
+//   font-size: 32px;
+// }
 
-@include break-point(desktop) {
-  h3 {
-    font-size: 28px;
-  }
-  h4 {
-    font-size: 22px;
-  }
-}
+// h4 {
+//   font-size: 27px;
+// }
 
-@include break-point(mobile) {
-  h1 {
-    font-size: 35px;
-  }
-  h2 {
-    font-size: 28px;
-  }
+// @include break-point(desktop) {
+//   h3 {
+//     font-size: 28px;
+//   }
+//   h4 {
+//     font-size: 22px;
+//   }
+// }
 
-  h3 {
-    font-size: 23px;
-  }
-  h4 {
-    font-size: 20px;
-  }
-  h5 {
-    font-size: 18px;
-  }
-}
+// @include break-point(mobile) {
+//   h1 {
+//     font-size: 35px;
+//   }
+//   h2 {
+//     font-size: 28px;
+//   }
 
-video {
-  object-fit: cover;
-}
+//   h3 {
+//     font-size: 23px;
+//   }
+//   h4 {
+//     font-size: 20px;
+//   }
+//   h5 {
+//     font-size: 18px;
+//   }
+// }
 
-::-webkit-scrollbar {
-  width: 5px;
-  height: 4px;
-  @include break-point(mobile) {
-    height: 4px;
-  }
-}
+// video {
+//   object-fit: cover;
+// }
 
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
+// ::-webkit-scrollbar {
+//   width: 5px;
+//   height: 4px;
+//   @include break-point(mobile) {
+//     height: 4px;
+//   }
+// }
 
-::-webkit-scrollbar-thumb {
-  background-color: $blue-color;
-  outline: 1px solid $light-red-color;
-  border-radius: 8px;
-}
+// ::-webkit-scrollbar-track {
+//   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background-color: $blue-color;
+//   outline: 1px solid $light-red-color;
+//   border-radius: 8px;
+// }
 
 

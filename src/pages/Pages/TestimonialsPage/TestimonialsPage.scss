@@ -1,175 +1,249 @@
-// --- VARIABLES ---
-$navy: #0a1128;
-$gold: #b48c36;
-$white: #ffffff;
-$bg-soft: #fcfdfe;
+// Variables
+$bg: #020617;
+$card-glass: rgba(15, 23, 42, 0.6);
+$border: rgba(255, 255, 255, 0.08);
+$primary: #4f8cff;
+$purple: #a855f7;
+$text-main: #f8fafc;
+$text-muted: #94a3b8;
+$gradient: linear-gradient(90deg, #{$primary}, #{$purple});
 
-.premium-testimonial-flow {
-  padding: 80px 0;
-  background-color: $bg-soft;
+.saas-testimonials {
+  padding: 30px 0;
+  background: $bg;
+  position: relative;
   overflow: hidden;
 
-  .container { 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
+  // Background Neural Glow
+  .bg-blur-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba($primary, 0.07) 0%, rgba($purple, 0.07) 50%, transparent 100%);
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
   }
 
-  .testimonial-header-v2 {
-    text-align: center; 
-    margin-bottom: 100px;
-    h2 { 
-      font-size: clamp(32px, 5vw, 46px); 
-      color: $navy; 
-      font-weight: 900; 
-      span { color: $gold; } 
-    }
-    @media (max-width: 768px) { margin-bottom: 60px; }
-  }
-
-  .journey-wrapper {
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
     position: relative;
+    z-index: 1;
+  }
 
-    .dynamic-line {
-      position: absolute; 
-      left: 50%; 
-      top: 0; 
-      bottom: 0; 
-      width: 3px;
-      background: rgba($navy, 0.05); 
-      transform: translateX(-50%);
-      @media (max-width: 900px) { left: 20px; transform: none; }
+  // Header Section
+  .testimonial-header {
+    text-align: center;
+    margin-bottom: 70px;
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba($primary, 0.1);
+      border: 1px solid rgba($primary, 0.2);
+      border-radius: 100px;
+      color: $primary;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
 
-    .journey-step {
-      display: flex; 
-      align-items: center; 
+    h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      color: $text-main;
+      line-height: 1.2;
+      margin: 0;
+
+      span {
+        display: inline-block;
+        background: $gradient;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+    }
+
+    p {
+      margin-top: 20px;
+      color: $text-muted;
+      font-size: 18px;
+      max-width: 650px;
+      margin-inline: auto;
+      line-height: 1.6;
+    }
+  }
+
+  // Fixed Grid Layout (Aligned Cards)
+  .testimonial-masonry {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Desktop par 3 barabar columns
+    gap: 30px;
+    width: 100%;
+    transition: all 0.5s ease;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr); // Laptop/Tablet par 2
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr; // Mobile par 1
+    }
+  }
+
+  // Individual Card Styling
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; // Content ko upar-niche balance karega
+    background: $card-glass;
+    border: 1px solid $border;
+    border-radius: 28px;
+    padding: 35px;
+    backdrop-filter: blur(15px);
+    transition: all 0.4s ease;
+    height: 100%; // Saare cards ki height barabar rakhega
+
+    &:hover {
+      transform: translateY(-10px);
+      border-color: rgba($primary, 0.4);
+      background: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-top {
+      display: flex;
       justify-content: space-between;
-      margin-bottom: 80px; 
-      position: relative;
+      align-items: center;
+      margin-bottom: 25px;
 
-      .content-side, .image-side { width: 42%; }
+      .stars {
+        color: #fbbf24;
+        display: flex;
+        gap: 5px;
+        font-size: 13px;
+      }
 
-      .testimonial-box {
-        background: $white; 
-        padding: 40px; 
-        border-radius: 30px;
-        box-shadow: 0 20px 50px rgba($navy, 0.05); 
-        border: 1px solid rgba($gold, 0.08);
-        
-        .mobile-quote-icon { 
-          display: none; 
-          color: rgba($gold, 0.2); 
-          font-size: 24px; 
-          margin-bottom: 10px; 
+      .quote-icon {
+        font-size: 28px;
+        color: rgba($primary, 0.15);
+      }
+    }
+
+    .review {
+      color: #cbd5e1;
+      font-size: 17px;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 30px;
+      flex-grow: 1; // Ye review box ko stretch karega taaki card height barabar rahe
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 25px;
+
+      .avatar-wrapper {
+        position: relative;
+        img {
+          width: 55px;
+          height: 55px;
+          border-radius: 16px;
+          object-fit: cover;
+          border: 2px solid rgba($primary, 0.2);
         }
-
-        .quote-text { 
-          font-size: 15px; 
-          line-height: 1.6; 
-          color: $navy; 
-          font-style: italic; 
-        }
-
-        .client-footer {
-          margin-top: 20px; 
-          .name { color: $gold; font-weight: 800; font-size: 17px; }
+        .verified-badge {
+          position: absolute;
+          bottom: -5px;
+          right: -5px;
+          color: $primary;
+          background: #fff;
+          border-radius: 50%;
+          font-size: 16px;
+          border: 3px solid #0f172a; // Card bg ke saath match karne ke liye
         }
       }
 
-      .portrait-frame {
-        position: relative; 
-        width: 220px; 
-        height: 220px; 
-        margin: 0 auto;
+      .details {
+        h4 { margin: 0; font-size: 17px; color: #fff; font-weight: 700; }
+        span { font-size: 14px; color: $text-muted; display: block; margin-top: 2px; }
+      }
+    }
+  }
 
-        img { 
-          width: 100%; 
-          height: 100%; 
-          object-fit: cover; 
-          border-radius: 50px 15px; 
-          border: 5px solid $white; 
-          box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
-          position: relative; 
-          z-index: 2; 
-        }
+  // Load More / Show Less Button Container
+  .load-more-container {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
 
-        .floating-ornament { 
-          position: absolute; 
-          inset: -10px; 
-          border: 2px dashed rgba($gold, 0.3); 
-          border-radius: 55px 20px; 
-          z-index: 1; 
+    .premium-toggle-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid $border;
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba($primary, 0.15);
+        border-color: $primary;
+        transform: translateY(-4px);
+        box-shadow: 0 15px 30px rgba($primary, 0.2);
+      }
+
+      &.show-less {
+        border-color: rgba($purple, 0.4);
+        &:hover {
+          background: rgba($purple, 0.15);
+          border-color: $purple;
+          box-shadow: 0 15px 30px rgba($purple, 0.2);
         }
       }
 
-      .center-anchor {
-        position: absolute; 
-        left: 50%; 
-        top: 50%; 
-        transform: translate(-50%, -50%); 
-        z-index: 5;
-
-        .shield-hex {
-          width: 70px; 
-          height: 70px; 
-          background: $navy; 
-          border-radius: 15px; 
-          transform: rotate(45deg);
-          display: flex; 
-          flex-direction: column; 
-          align-items: center; 
-          justify-content: center;
-          border: 3px solid $gold; 
-          box-shadow: 0 0 20px rgba($gold, 0.3);
-
-          .s-icon, .step-count { transform: rotate(-45deg); color: $gold; }
-          .step-count { color: $white; font-size: 14px; font-weight: 900; }
-        }
-      }
-
-      &.left-aligned { flex-direction: row; }
-      &.right-aligned { flex-direction: row-reverse; }
-
-      @media (max-width: 900px) {
-        flex-direction: column !important;
-        padding-left: 50px;
-        margin-bottom: 60px;
-        align-items: flex-start;
-
-        .content-side, .image-side { width: 100%; }
-        .image-side { order: 1; margin-bottom: 20px; }
-        .content-side { order: 2; }
-
-        .portrait-frame {
-          width: 120px; height: 120px; margin: 0;
-          img { border-radius: 20px; }
-          .floating-ornament { display: none; }
-        }
-
-        .testimonial-box {
-          padding: 20px; 
-          .mobile-quote-icon { display: block; }
-        }
-
-        .center-anchor {
-          left: 20px; 
-          .shield-hex { 
-            width: 40px; height: 40px; 
-            .s-icon { font-size: 12px; }
-            .step-count { font-size: 10px; }
-          }
-        }
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
       }
     }
   }
 }
 
-.full-page-loader {
-  width: 100%;
-  height: 80vh;
+// Loader Animation
+.mini-loader {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.testimonial-loader {
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $bg-soft;
+  background: $bg;
 }

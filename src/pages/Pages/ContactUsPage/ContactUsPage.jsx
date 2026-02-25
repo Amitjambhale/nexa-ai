@@ -1,234 +1,123 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaArrowRight,
-  FaClock,
-  FaShieldAlt,
-  FaUserTie,
-  FaCheckCircle,
-  FaTimesCircle,
-} from "react-icons/fa";
-import { addContactUs } from "services/home/PagesApis/pages";
+import { motion } from "framer-motion";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
 import "./ContactUsPage.scss";
 
 const ContactUsPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    emailid: "",
-    mobile: "",
-    comment: "",
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState("idle");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("loading");
-
-    try {
-      const res = await addContactUs(formData);
-      if (res.code === 200) {
-        setStatus("success");
-        setFormData({ name: "", emailid: "", mobile: "", comment: "" });
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        setStatus("error");
-        setTimeout(() => setStatus("idle"), 4000);
-      }
-    } catch (err) {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 4000);
-    }
+    setStatus("submitting");
+    setTimeout(() => {
+      setStatus("success");
+      setTimeout(() => {
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setStatus("idle");
+      }, 3000);
+    }, 1500);
   };
 
   return (
-    <div className="contactpage-premium-layout">
-      <div className="contactpage-container">
-        <AnimatePresence>
-          {status !== "idle" && status !== "loading" && (
-            <motion.div
-              className={`status-overlay ${status}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.1 }}
-            >
-              <div className="overlay-content">
-                {status === "success" ? (
-                  <>
-                    <FaCheckCircle className="status-icon" />
-                    <h2>Message Received!</h2>
-                    <p>
-                      Thank you for reaching out. Our experts will contact you
-                      shortly.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <FaTimesCircle className="status-icon" />
-                    <h2>Something Went Wrong</h2>
-                    <p>
-                      We couldn't process your request right now. Please try
-                      again later.
-                    </p>
-                  </>
-                )}
-                <button onClick={() => setStatus("idle")}>Close</button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+    <section className="premium-contact" id="contact">
+      <div className="contact-blur-1"></div>
+      <div className="contact-blur-2"></div>
 
-        <header className="contactpage-header">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+      <div className="container">
+        <motion.div 
+          className="contact-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <span className="contact-badge">Contact Support</span>
+          <h2>Get in <span>Touch</span></h2>
+          <p>Questions? Our support team will respond within 24 hours.</p>
+        </motion.div>
+
+        <div className="contact-grid">
+          {/* LEFT - WIDE FORM CARD */}
+          <motion.div 
+            className="contact-form-card"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <span className="premium-tag">Assurre Plus</span>
-            <h1>
-              Connect with our <span>Experts.</span>
-            </h1>
-            <p>Your security journey starts with a conversation.</p>
-          </motion.div>
-        </header>
+            <div className="card-header">
+              <h3>Send a Message</h3>
+              <div className="pulse-indicator"></div>
+            </div>
 
-        <div className="contactpage-upper-grid">
-          <div className="contactpage-form-section">
-            <h3 className="sub-heading">Send an Inquiry</h3>
-            <form className="modern-form" onSubmit={handleSubmit}>
-              <div className="input-row">
-                <input
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  required
-                />
-                <input
-                  type="tel"
-                  name="mobile"
-                  value={formData.mobile}
-                  placeholder="Phone Number"
-                  inputMode="numeric"
-                  pattern="[0-9]{10}"
-                  maxLength={10}
-                  required
-                  onChange={(e) => {
-                    const value = e.target.value.replace(/\D/g, "");
-                    if (value.length <= 10) {
-                      handleChange({
-                        target: { name: "mobile", value },
-                      });
-                    }
-                  }}
-                />
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="form-row">
+                <div className="input-group">
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder=" " />
+                  <label>Name</label>
+                </div>
+                <div className="input-group">
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} maxLength={10} required placeholder=" " />
+                  <label>Phone Number</label>
+                </div>
               </div>
 
-              <input
-                name="emailid"
-                type="email"
-                value={formData.emailid}
-                onChange={handleChange}
-                placeholder="Email Address"
-                required
-              />
+              <div className="input-group full-width">
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder=" " />
+                <label>Email Address</label>
+              </div>
 
-              <textarea
-                name="comment"
-                value={formData.comment}
-                onChange={handleChange}
-                rows="6"
-                placeholder="How can we assist you with your insurance needs?"
-                required
-              ></textarea>
+              <div className="input-group full-width">
+                <textarea name="message" rows="3" value={formData.message} onChange={handleChange} required placeholder=" "></textarea>
+                <label>How can we help?</label>
+              </div>
 
-              <button
-                className="submit-action-btn"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "SENDING..." : "SEND MESSAGE"}{" "}
-                <FaArrowRight />
+              <button type="submit" className={`submit-btn ${status}`} disabled={status !== "idle"}>
+                {status === "idle" && (
+                  <><span>Send Message</span><FaPaperPlane className="plane-icon" /></>
+                )}
+                {status === "submitting" && <div className="loader"></div>}
+                {status === "success" && <span>Message Sent ✓</span>}
               </button>
             </form>
-          </div>
+          </motion.div>
 
-          <div className="contactpage-info-section">
-            <h3 className="sub-heading">Contact Details</h3>
-            <div className="info-cards-stack">
-              <a href="tel:+919881952606" className="clickable-info-box">
-                <div className="icon-wrap">
-                  <FaPhoneAlt />
-                </div>
-                <div className="text-wrap">
-                  <label>Direct Support</label>
-                  <p>+91 9881952606</p>
-                </div>
-              </a>
-
-              <a
-                href="mailto:assurreplus@gmail.com"
-                className="clickable-info-box"
-              >
-                <div className="icon-wrap">
-                  <FaEnvelope />
-                </div>
-                <div className="text-wrap">
-                  <label>Official Email</label>
-                  <p>assurreplus@gmail.com</p>
-                </div>
-              </a>
-
-              <div className="clickable-info-box no-hover">
-                <div className="icon-wrap">
-                  <FaMapMarkerAlt />
-                </div>
-                <div className="text-wrap">
-                  <label>Headquarters</label>
-                  <p>Vignaharta, Bhusari Colony, Kothrud, Pune-38</p>
-                </div>
-              </div>
+          {/* RIGHT - INFO STACK */}
+          <motion.div 
+            className="contact-info-stack"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="info-card-item">
+              <div className="icon-wrapper"><FaPhoneAlt /></div>
+              <div className="content"><label>Phone</label><p>+91 9999899998</p></div>
             </div>
 
-            <div className="features-strip">
-              <div className="feature">
-                <FaClock /> <span>24/7 Response</span>
-              </div>
-              <div className="feature">
-                <FaShieldAlt /> <span>Secure Handling</span>
-              </div>
-              <div className="feature">
-                <FaUserTie /> <span>Expert Advice</span>
-              </div>
+            <div className="info-card-item">
+              <div className="icon-wrapper"><FaEnvelope /></div>
+              <div className="content"><label>Email</label><p>nextai@gmail.com</p></div>
             </div>
-          </div>
+
+            <div className="info-card-item">
+              <div className="icon-wrapper"><FaMapMarkerAlt /></div>
+              <div className="content"><label>Location</label><p> India</p></div>
+            </div>
+
+            <div className="security-note">
+              <div className="shield-icon">🛡️</div>
+              <p>Data is encrypted using neural protocols. Secure and private.</p>
+            </div>
+          </motion.div>
         </div>
-
-        <section className="map-grand-section">
-          <div className="map-title-area">
-            <h2>
-              Find Us on <span>Google Maps</span>
-            </h2>
-            <div className="title-line"></div>
-          </div>
-          <div className="contactus-map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.417392092972!2d73.78647207509766!3d18.51003106949628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1e1f4cda279%3A0x2776a45ea65b97af!2sAssurrePlus!5e0!3m2!1sen!2sin!4v1767418029111!5m2!1sen!2sin"
-              width="100%"
-              height="450"
-              className="contactus-map"
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe>
-          </div>
-        </section>
       </div>
-    </div>
+    </section>
   );
 };
 

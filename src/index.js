@@ -8,7 +8,7 @@ import {
   LanguageContextProvider,
 } from "context/context";
 import { CookiesProvider } from "react-cookie";
-import { registerServiceWorker } from "./register-sw";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,4 +25,4 @@ root.render(
   </React.StrictMode>
 );
 
-registerServiceWorker();
+

@@ -1,0 +1,155 @@
+$bg-dark: #0b0f19;
+$card-bg: #121a2f;
+$border: #1f2a44;
+$primary: #4f8cff;
+$gradient: linear-gradient(135deg, #4f8cff, #a855f7);
+$text: #e2e8f0;
+$muted: #94a3b8;
+
+.premium-pricing {
+  padding: 70px 0;
+  background: #0f1629;
+  color: #fff;
+  overflow: hidden; // Extra safety for animations
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+
+      span {
+        background: $gradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    p {
+      color: $muted;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .pricing-card {
+    background: $card-bg;
+    border: 1px solid $border;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-8px);
+      border-color: $primary;
+      box-shadow: 0 20px 50px rgba(79, 140, 255, 0.2);
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: $primary;
+    }
+
+    .desc {
+      color: $muted;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+      text-align: left;
+
+      li {
+        margin-bottom: 12px;
+        font-size: 14px;
+        color: $text;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        svg {
+          color: $primary;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .pricing-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: $gradient;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(79, 140, 255, 0.4);
+      }
+    }
+
+    &.popular {
+      border: 1px solid $primary;
+      // Note: Framer motion scale override karega, isliye hover effects handle motion handle karega
+      box-shadow: 0 25px 60px rgba(79, 140, 255, 0.25);
+      animation: float 4s ease-in-out infinite; // 🔥 Floating effect
+
+      .badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: $gradient;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        z-index: 10;
+      }
+    }
+  }
+}
+
+// 🔥 Floating Animation
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width: 768px) {
+  .premium-pricing {
+    padding: 70px 0;
+    .pricing-card.popular {
+        animation: none; // Mobile par animation band kar sakte hain clarity ke liye
+    }
+  }
+}

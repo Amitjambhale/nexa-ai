@@ -1,312 +1,298 @@
-$footer-navy: #0d1627;
-$footer-navy-light: #1a2b4c;
-$footer-gold: #c5a059;
-$footer-white: #ffffff;
-$footer-text-gray: #b0b0b0;
+$bg-dark: #020617;
+$card-glass: rgba(15, 23, 42, 0.7);
+$primary: #4f8cff;
+$purple: #a855f7;
+$text-muted: #94a3b8;
+$border-color: rgba(255, 255, 255, 0.08);
 
-.footer-main {
-  color: $footer-white;
-  padding-top: 80px;
+.saas-footer {
+  background: $bg-dark;
   position: relative;
-  font-family: "Arial", sans-serif;
-  width: 100%;
-  overflow-x: hidden;
+  padding: 120px 0 30px;
+  overflow: hidden;
+  border-top: 1px solid $border-color;
+
+  // Animated Glow Effects
+  .footer-glow-1,
+  .footer-glow-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .footer-glow-1 {
+    top: -100px;
+    left: -100px;
+    background: $primary;
+  }
+
+  .footer-glow-2 {
+    bottom: -100px;
+    right: -100px;
+    background: $purple;
+  }
 
   .footer-container {
-    margin: 0 30px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    @media (max-width: 992px) {
-      margin: 0 0px;
-      padding: 0 10px;
+    max-width: 1240px;
+    margin: auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.4fr 0.7fr 0.7fr 1.2fr;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      text-align: center;
     }
   }
 
-  // Floating Contact Cards
-  .footer-contact-cards {
-    margin-bottom: -60px;
-    position: relative;
-    z-index: 5;
-
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+  .footer-col {
+    h3 {
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
     }
 
-    .footer-card {
-      background: $footer-navy-light;
-      border-bottom: 3px solid $footer-gold;
-      padding: 25px;
-      flex: 1;
-      min-width: 300px; // Ensures they don't get too thin
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-      cursor: pointer;
+    .footer-links {
+      list-style: none;
+      padding: 0;
 
-      &:hover {
-        transform: translateY(-10px);
-        background: $footer-gold;
-        .footer-card-icon {
-          color: $footer-navy;
-          background: $footer-white;
-        }
-        .footer-card-info {
-          h4,
-          p {
-            color: $footer-navy;
+      li {
+        margin-bottom: 16px;
+
+        // 🔥 Apply same style to BOTH a and button
+        a,
+        button {
+          color: $text-muted;
+          text-decoration: none;
+          transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          font-size: 15px;
+          display: inline-block;
+          background: transparent; // IMPORTANT (button reset)
+          border: none; // remove default button border
+          cursor: pointer;
+          padding: 0; // remove default padding
+          font-family: inherit; // match site font
+          text-align: left; // proper alignment
+
+          &:hover {
+            color: $primary;
+            transform: translateX(8px);
           }
         }
       }
+    }
+  }
 
-      .footer-card-icon {
-        font-size: 24px;
-        color: $footer-gold;
-        background: rgba(255, 255, 255, 0.05);
-        min-width: 55px;
-        height: 55px;
+  .brand {
+    .logo-text {
+      font-size: 34px;
+      font-weight: 800;
+      color: white; // Default color for 'Nexa'
+      margin-bottom: 24px;
+      display: inline-block; // Box model fix
+
+      span {
+        background: linear-gradient(90deg, #4f8cff, #a855f7); // Direct hex or variables
+
+        /* Chrome, Safari, and Edge support */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        /* Standard support */
+        background-clip: text;
+        color: transparent; // Yeh backup ka kaam karta hai
+
+        display: inline-block; // Span ko block element treat karne ke liye taaki gradient sahi baithe
+      }
+    }
+
+    .brand-desc {
+      color: $text-muted;
+      line-height: 1.8;
+      font-size: 15px;
+      max-width: 320px;
+      margin-bottom: 30px;
+
+      @media (max-width: 640px) {
+        margin: 0 auto 30px;
+      }
+    }
+
+    .social-group {
+      display: flex;
+      gap: 12px;
+
+      @media (max-width: 640px) {
+        justify-content: center;
+      }
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid $border-color;
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        transition: 0.5s;
-      }
+        color: white;
+        font-size: 19px;
+        transition: 0.4s;
 
-      .footer-card-info {
-        h4 {
-          margin: 0;
-          font-size: 18px;
-          color: $footer-gold;
-          font-weight: 700;
-          transition: 0.3s;
-        }
-        p {
-          margin: 5px 0 0;
-          font-size: 13px;
-          color: $footer-text-gray;
-          line-height: 1.5;
-          transition: 0.3s;
+        &:hover {
+          background: $primary;
+          border-color: $primary;
+          transform: translateY(-6px) rotate(10deg);
+          box-shadow: 0 12px 24px rgba($primary, 0.3);
         }
       }
     }
   }
 
-  // Links Grid
-  .footer-bottom-grid {
-    background: darken($footer-navy, 3%);
-    padding: 140px 0 60px;
-
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-
-    .footer-column {
-      flex: 1;
-      min-width: 250px;
-
-      &.footer-brand {
-        flex: 1.5;
-      }
+  .newsletter {
+    .newsletter-card {
+      background: $card-glass;
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid $border-color;
 
       h3 {
-        color: $footer-white;
-        margin-bottom: 30px;
-        font-size: 22px;
-        font-weight: 700;
-        position: relative;
-        padding-bottom: 12px;
-
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 50px;
-          height: 2px;
-          background: $footer-gold;
-        }
+        margin-bottom: 12px;
       }
 
       p {
-        color: $footer-text-gray;
-        line-height: 1.8;
-        font-size: 15px;
+        color: $text-muted;
+        font-size: 14px;
         margin-bottom: 20px;
+        line-height: 1.5;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      .newsletter-box {
+        display: flex;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid $border-color;
+        border-radius: 16px;
+        padding: 6px;
+        transition: 0.3s;
 
-        li {
-          margin-bottom: 14px;
-          text-align: start;
-          a {
-            color: $footer-text-gray;
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            transition: 0.4s ease;
+        &:focus-within {
+          border-color: $primary;
+          box-shadow: 0 0 15px rgba($primary, 0.1);
+        }
 
-            &:hover {
-              color: $footer-gold;
-              transform: translateX(8px);
-            }
+        input {
+          flex: 1;
+          background: transparent;
+          border: none;
+          outline: none;
+          color: white;
+          padding: 0 15px;
+          font-size: 14px;
+          width: 100%;
+        }
 
-            svg {
-              font-size: 11px;
-              color: $footer-gold;
-              margin-top: 4px;
-            }
+        button {
+          width: 44px;
+          height: 44px;
+          background: $primary;
+          border: none;
+          border-radius: 12px;
+          color: white;
+          cursor: pointer;
+          transition: 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            background: lighten($primary, 10%);
+            transform: scale(1.05);
           }
         }
       }
     }
+  }
 
-    .footer-social-box {
+  .footer-bottom {
+    margin-top: 100px;
+    padding: 30px 24px;
+    border-top: 1px solid $border-color;
+
+    .container-bottom {
+      max-width: 1240px;
+      margin: auto;
       display: flex;
-      gap: 15px;
-      margin-top: 40px;
-      a {
-        width: 40px;
-        height: 40px;
-        background: $footer-navy-light;
+      justify-content: space-between;
+      align-items: center;
+
+      @media (max-width: 640px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .copyright {
+        color: #64748b;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .status-badge {
         display: flex;
         align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        color: $footer-white;
-        font-size: 16px;
-        transition: 0.5s;
-        border: 1px solid transparent;
+        gap: 10px;
+        background: rgba(16, 185, 129, 0.05);
+        padding: 8px 16px;
+        border-radius: 100px;
+        border: 1px solid rgba(16, 185, 129, 0.1);
 
-        &:hover {
-          background: $footer-gold;
-          color: $footer-navy;
-          transform: rotate(360deg) scale(1.1);
-          border-color: $footer-white;
+        .dot {
+          width: 8px;
+          height: 8px;
+          background: #10b981;
+          border-radius: 50%;
+          box-shadow: 0 0 10px #10b981;
+          animation: blink 2s infinite;
         }
-      }
-    }
-  }
 
-  // Bottom Copyright
-  .footer-copyright {
-    padding: 25px 0;
-    background: #050a14;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-
-    .footer-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    p {
-      color: #888;
-      font-size: 14px;
-      margin: 0;
-
-      a {
-        color: #afafaf;
-        text-decoration: none;
-
-        &:hover {
-          color: #b48c36;
-        }
-      }
-    }
-
-    .footer-powered {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      span {
-        color: #888;
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-      img {
-        height: 45px;
-        object-fit: contain;
-        transition: 0.4s ease;
-        filter: brightness(0.9);
-        &:hover {
-          transform: scale(1.05);
-          filter: brightness(1.2);
+        .status-text {
+          color: #10b981;
+          font-size: 13px;
+          font-weight: 500;
         }
       }
     }
   }
 }
 
-// Media Queries for perfect Responsiveness
-@media (max-width: 1024px) {
-  .footer-main {
-    .footer-contact-cards .footer-card {
-      min-width: 45%;
-    }
+@keyframes blink {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
-}
 
-@media (max-width: 768px) {
-  .footer-main {
-    padding-top: 40px;
-    background: $footer-navy;
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
 
-    .footer-contact-cards {
-      margin-bottom: -40px;
-      .footer-card {
-        min-width: 100%;
-      }
-    }
-
-    .footer-bottom-grid {
-      padding: 100px 0 50px;
-
-      .footer-column {
-        min-width: 100%;
-        text-align: center; // Baki sab center hi rahega (h3, p, etc.)
-
-        h3::after {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        // SIRF ye links left-align honge
-        ul li {
-          text-align: start; // List item left se shuru hoga
-
-          a {
-            justify-content: flex-start !important;
-            display: flex;
-            padding-left: 20%; // Mobile screen ke hisab se thoda margin taaki chipka hua na lage
-          }
-        }
-      }
-    }
-
-    .footer-social-box {
-      justify-content: center;
-    }
-
-    .footer-copyright .footer-container {
-      flex-direction: column;
-      text-align: center;
-    }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

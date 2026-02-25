@@ -12,7 +12,7 @@ import {
   errorResponse,
   failResponse,
 } from "config/config";
-import LocationTracker from "LocationTracker";
+
 
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_LOGIN}>
           <div className="App position-relative">
             <ScrollToTop />
-            <LocationTracker/>
+            
             <Routing />
           </div>
           <Toaster

@@ -1,43 +1,46 @@
-import React, { useRef } from "react"; // useRef add kiya
+import React from "react";
 import "./Home.scss";
-import Hero from "pages/Sections/Hero/Hero";
-import AboutSection from "pages/Sections/AboutSection/AboutSection";
-import AchievementSection from "pages/Sections/AchievementSection/AchievementSection";
-import LifeInsuranceSection from "pages/Sections/LifeInsuranceSection/LifeInsuranceSection";
-import OurStrengthSection from "pages/Sections/OurStrengthSection/OurStrengthSection";
-import GallerySection from "pages/Sections/GallerySection/GallerySection";
-import TestimonialSection from "pages/Sections/TestimonialSection/TestimonialSection";
-import BlogSection from "pages/Sections/BlogSection/BlogSection";
+import HeroSection from "pages/Pages/HeroPage/HeroSection";
+import FeaturesSection from "pages/Pages/FeaturesPage/FeaturesSection";
+import PricingSection from "pages/Pages/PricingPage/PricingSection";
+import FAQPage from "pages/Pages/FAQPage/FAQPage";
+import TestimonialsPage from "pages/Pages/TestimonialsPage/TestimonialsPage.jsx";
+import CTASection from "pages/Pages/CtaPage/CTASection";
+import ContactUsPage from "pages/Pages/ContactUsPage/ContactUsPage";
 
 const Home = () => {
-  // 1. Ref banaye life insurance section ke liye
-  const lifeInsuranceRef = useRef(null);
-
-  // 2. Scroll function jo hum Hero ko pass karenge
-  const scrollToInsurance = () => {
-    lifeInsuranceRef.current?.scrollIntoView({ 
-      behavior: "smooth", 
-      block: "start" 
-    });
-  };
-
   return (
     <section className="Home">
-      {/* 3. Hero ko function pass karein */}
-      <Hero onExploreClick={scrollToInsurance} />
-      
-      <AboutSection />
-      <AchievementSection/>
-      
-      {/* 4. Section ko wrap karein ya ref attach karein */}
-      <div ref={lifeInsuranceRef}>
-        <LifeInsuranceSection />
-      </div>
+      {/* 🚀 HERO */}
+      <HeroSection />
 
-      <OurStrengthSection/>
-      <GallerySection/>
-      <TestimonialSection/>
-      <BlogSection/>
+      {/* ⭐ FEATURES (ID REQUIRED FOR NAV SCROLL) */}
+      <section id="features">
+        <FeaturesSection />
+      </section>
+
+      {/* 💰 PRICING */}
+      <section id="pricing">
+        <PricingSection />
+      </section>
+
+      {/* ❓ FAQ */}
+      <section id="faq">
+        <FAQPage />
+      </section>
+
+      {/* 💬 TESTIMONIALS */}
+      <section id="testimonials">
+        <TestimonialsPage />
+      </section>
+
+      {/* 🔥 CTA */}
+      <CTASection />
+
+      {/* 📞 CONTACT */}
+      <section id="contact">
+        <ContactUsPage />
+      </section>
     </section>
   );
 };
