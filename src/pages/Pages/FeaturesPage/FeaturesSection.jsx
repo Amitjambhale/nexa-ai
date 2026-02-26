@@ -72,10 +72,7 @@ const FeaturesSection = () => {
           <h2>
             Powerful Features That Make Us <span>Stand Out</span>
           </h2>
-          <p>
-            Designed with modern UI, performance, and scalability in mind for
-            startups and premium SaaS products.
-          </p>
+
         </div>
 
         {/* Features Grid */}
