@@ -17,6 +17,3 @@ NexaAI is a high-performance, modern landing page built with **React.js** and **
 ## 🎨 Customization
 - **Logo:** Replace `/public/nexa-ai.png` with your own logo.
 - **Colors:** Update the variables in `src/components/header/Normal/Header.scss`.
-
----
-*Created by [Your Name/Brand]*
